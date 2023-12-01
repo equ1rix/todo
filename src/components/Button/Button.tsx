@@ -2,26 +2,31 @@ import React from "react";
 
 export const BUTTON_TYPE = {
   PRIMARY: 'PRIMARY',
-  LIGHT: 'LIGHT'
+  LIGHT: 'LIGHT',
+  DISABLED: 'DISABLED'
 };
 
 type ButtonType = typeof BUTTON_TYPE[keyof typeof BUTTON_TYPE];
 
 const BUTTON_STYLE: Record<ButtonType, string> = {
-  PRIMARY: "bg-primaryButtonBG rounded-lg text-primaryTextColor font-bold py-2 px-4",
-  LIGHT: "bg-lightButtonBG rounded-lg text-lightTextColor border border-dashed border-2 font-bold py-2 px-4"
+  PRIMARY: "bg-primaryBG rounded-lg text-text-primary font-bold py-2 px-4",
+  LIGHT: "rounded-lg text-text-light border border-dashed border-2 font-bold py-2 px-4",
+  DISABLED: "bg-disabledBG rounded-lg text-text-disabled font-bold py-2 px-4"
 };
 
 type ButtonProps = {
   onClick?: () => void;
   text?: string;
   type?: ButtonType;
+  isDisabled?: boolean;
 };
 
-export default function Button({ onClick, text, type = BUTTON_TYPE.PRIMARY }: ButtonProps) {
-  const buttonStyle = BUTTON_STYLE[type];
+
+
+export default function Button({ onClick, text, type = BUTTON_TYPE.PRIMARY, isDisabled = false, }: ButtonProps) {
+  const buttonStyle = isDisabled ? BUTTON_STYLE.DISABLED : BUTTON_STYLE[type];
   return (
-    <button className={buttonStyle} type='button' onClick={() => onClick?.()}>{text}</button>
+    <button className={buttonStyle} type='button'  disabled={isDisabled} onClick={() => onClick?.()}>{text}</button>
   );
 }
 

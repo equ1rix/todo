@@ -6,10 +6,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primaryButtonBG: '#5b20b7',
-        primaryTextColor: '#f8ecea',
-        lightButtonBG: '',
-        lightTextColor: '#94a2b9',
+        text: {
+          primary: '#f8ecea',
+          light: '#94a2b9',
+          disabled: '#000000'
+        },
+        primaryBG: '#5b20b7',
+        disabledBG: '#808080',
       }
     },
   },
