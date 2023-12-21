@@ -1,15 +1,16 @@
 import React from "react";
 
 import IconButton from "./IconButton";
-import { DeleteIcon as DeleteIcon123 } from "./Icons";
+import { DeleteIcon } from "./Icons";
+import mock from "../Helpers";
 
 type ButtonProps = {
-  onClick?: () => void;
+  mock: () => void;
 };
 
-const DeleteButton = ({ onClick }: ButtonProps) => (
-  <IconButton onClick={onClick}>
-    <DeleteIcon123 />
+const DeleteButton = ({ mock }: ButtonProps) => (
+  <IconButton onClick={mock}>
+    <DeleteIcon />
   </IconButton>
 );
 
