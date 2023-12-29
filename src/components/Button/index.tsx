@@ -1,6 +1,6 @@
 import React from "react";
 
-import mock from "../Helpers";
+import { mock } from "../Helpers";
 
 export const BUTTON_TYPE = {
   PRIMARY: "PRIMARY",
@@ -15,18 +15,20 @@ const BUTTON_STYLE: Record<ButtonType, string> = {
   LIGHT:
     "rounded-lg text-text-light border border-dashed border-2 font-bold py-2 px-4",
   DISABLED: "bg-disabledBG rounded-lg text-text-disabled font-bold py-2 px-4",
+  MODAL:
+    "bg-primaryBG rounded-lg text-text-primary font-bold py-2 px-4 w-[100%]",
 };
 
 type ButtonProps = {
-  mock: () => void;
+  onClick: () => void;
   text?: string;
   type?: ButtonType;
   isDisabled?: boolean;
 };
 
 const Button = ({
-  mock,
-  text,
+  onClick = mock,
+  text = "",
   type = BUTTON_TYPE.PRIMARY,
   isDisabled = false,
 }: ButtonProps) => {
@@ -36,7 +38,7 @@ const Button = ({
       className={buttonStyle}
       type="button"
       disabled={isDisabled}
-      onClick={mock}
+      onClick={onClick}
     >
       {text}
     </button>
