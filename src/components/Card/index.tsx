@@ -1,7 +1,7 @@
 import React from "react";
 
 import { DeleteButton } from "../IconButton";
-import mock from "../Helpers";
+import { mock } from "../Helpers";
 
 export const CARD_TYPE = {
   PRIMARY: "PRIMARY",
@@ -18,13 +18,18 @@ const CARD_STYLE: Record<CardType, string> = {
 };
 
 type CardProps = {
-  mock: () => void;
+  onDelete: () => void;
   title?: string;
   text?: string;
   type?: CardType;
 };
 
-const Card = ({ mock, title, text, type = CARD_TYPE.PRIMARY }: CardProps) => {
+const Card = ({
+  onDelete = mock,
+  title = "",
+  text = "",
+  type = CARD_TYPE.PRIMARY,
+}: CardProps) => {
   const cardStyle = CARD_STYLE[type];
   const titleClass =
     type === "PRIMARY"
@@ -37,7 +42,7 @@ const Card = ({ mock, title, text, type = CARD_TYPE.PRIMARY }: CardProps) => {
         <p>{text}</p>
       </div>
       <div className="flex cards-center justify-end h-[50px] border-dashed border-t-2 border-border-primaryBorder">
-        <DeleteButton mock={mock} />
+        <DeleteButton onClick={onDelete} />
       </div>
     </div>
   );
