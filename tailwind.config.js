@@ -17,6 +17,8 @@ module.exports = {
         primaryBG: "#5b20b7",
         disabledBG: "#808080",
         defaultBG: "#141f32",
+        modalBG: "#0f172a",
+        inputBG: "#151f33",
       },
     },
   },
