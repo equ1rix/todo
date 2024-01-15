@@ -1,7 +1,7 @@
 import React from "react";
 
 import { CloseIcon } from "./Icons";
-import { mock } from "../Helpers";
+import { mock } from "../../Helpers";
 import IconButton from "./IconButton";
 
 type ButtonProps = {

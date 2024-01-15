@@ -1,6 +1,6 @@
 import React from "react";
 
-import { mock } from "../Helpers";
+import { mock } from "../../Helpers";
 
 export const BUTTON_TYPE = {
   PRIMARY: "PRIMARY",
