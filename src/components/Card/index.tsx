@@ -1,7 +1,7 @@
 import React from "react";
 
 import { DeleteButton } from "../IconButton";
-import { mock } from "../Helpers";
+import { mock } from "../../Helpers";
 
 export const CARD_TYPE = {
   PRIMARY: "PRIMARY",

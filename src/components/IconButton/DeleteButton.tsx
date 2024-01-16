@@ -2,7 +2,7 @@ import React from "react";
 
 import IconButton from "./IconButton";
 import { DeleteIcon } from "./Icons";
-import { mock } from "../Helpers";
+import { mock } from "../../Helpers";
 
 type ButtonProps = {
   onClick: () => void;
