@@ -41,7 +41,7 @@ const ModalTask = ({
         label="Description (optional)"
         placeholder="e.g., study for the test"
       />
-      <Button type="MODAL" text="Add a task" onClick={onAddHandler} />
+      <Button text="Add a task" onClick={onAddHandler} />
     </Modal>
   );
 };
