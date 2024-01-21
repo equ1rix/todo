@@ -15,8 +15,6 @@ const BUTTON_STYLE: Record<ButtonType, string> = {
   LIGHT:
     "rounded-lg text-text-light border border-dashed border-2 font-bold py-2 px-4",
   DISABLED: "bg-disabledBG rounded-lg text-text-disabled font-bold py-2 px-4",
-  MODAL:
-    "bg-primaryBG rounded-lg text-text-primary font-bold py-2 px-4 w-[100%]",
 };
 
 type ButtonProps = {
