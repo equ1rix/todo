@@ -11,12 +11,10 @@ export const BUTTON_TYPE = {
 type ButtonType = (typeof BUTTON_TYPE)[keyof typeof BUTTON_TYPE];
 
 const BUTTON_STYLE: Record<ButtonType, string> = {
-  PRIMARY:
-    "bg-primaryBG rounded-lg text-text-primary font-bold py-2 px-4 w-[100%] h-[100%]",
+  PRIMARY: "bg-primaryBG rounded-lg text-text-primary font-bold py-2 px-4 ",
   LIGHT:
-    "rounded-lg text-text-light border border-dashed border-2 font-bold py-2 px-4 w-[100%] h-[100%]",
-  DISABLED:
-    "bg-disabledBG rounded-lg text-text-disabled font-bold py-2 px-4 w-[100%] h-[100%]",
+    "rounded-lg text-text-light border border-dashed border-2 font-bold py-2 px-4 ",
+  DISABLED: "bg-disabledBG rounded-lg text-text-disabled font-bold py-2 px-4 ",
 };
 
 type ButtonProps = {
