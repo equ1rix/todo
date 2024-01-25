@@ -1,46 +1,54 @@
 import React, { useState } from "react";
 
 import Button from "../Button";
-import { mock } from "../../Helpers";
 import SidebarElement from "../SidebarElement";
 
+import { mock } from "../../Helpers";
+
+type Element = {
+  text: string;
+  isActive: boolean;
+  id: number;
+};
+
+const elements: Element[] = [
+  {
+    id: 0,
+    text: "Today's tasks",
+    isActive: true,
+  },
+  {
+    id: 1,
+    text: "All tasks",
+    isActive: false,
+  },
+];
+
 const Sidebar = () => {
-  const elements = [
-    {
-      text: "Today's tasks",
-      isActive: true,
-      id: 0,
-    },
-    {
-      text: "All tasks",
-      isActive: false,
-      id: 1,
-    },
-  ];
-  const [activeElement, setActiveElement] = useState(0);
-  const elementHandler = (id: number) => setActiveElement(id);
+  const [activeElement, setActiveElement] = useState<number>(elements[0].id);
+
+  const onElementClickHandler = (id: number) => setActiveElement(id);
+
   return (
     <div className="flex flex-col bg-defaultBG h-[100%] min-w-[200px] w-[100%]">
       <h3 className="text-center text-text-light font-bold py-2 px-4 text-xl">
         TO-DO LIST
       </h3>
-      <Button onClick={() => {}} text="Add new Task" />
+      <Button onClick={mock} text="Add new Task" />
       <ul className="mt-[30px]">
-        {elements.map((element) => {
-          return (
+        {elements.map(
+          (element: { id: number; text: string; isActive: boolean }) => (
             <SidebarElement
+              key={element.id}
               text={element.text}
               onClick={() => {
-                elementHandler(element.id);
+                onElementClickHandler(element.id);
               }}
-              style={
-                element.id === activeElement
-                  ? "bg-activeBG p-[6px] text-white text-left border-solid border-r-4 border-white mb-[5px]"
-                  : "bg-defaultBG p-[6px] text-text-light text-left mb-[5px]"
-              }
+              isActive={element.id === activeElement}
             />
-          );
-        })}
+          )
+        )}
+        ;
       </ul>
     </div>
   );
