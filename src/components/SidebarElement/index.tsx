@@ -9,7 +9,7 @@ type ElementProps = {
 };
 
 const SidebarElement = ({
-  isActive,
+  isActive = false,
   text = "",
   onClick = mock,
 }: ElementProps) => {

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
+import { mock } from "../../Helpers";
+
 import Button from "../Button";
 import SidebarElement from "../SidebarElement";
-
-import { mock } from "../../Helpers";
 
 type Element = {
   text: string;
@@ -36,18 +36,16 @@ const Sidebar = () => {
       </h3>
       <Button onClick={mock} text="Add new Task" />
       <ul className="mt-[30px]">
-        {elements.map(
-          (element: { id: number; text: string; isActive: boolean }) => (
-            <SidebarElement
-              key={element.id}
-              text={element.text}
-              onClick={() => {
-                onElementClickHandler(element.id);
-              }}
-              isActive={element.id === activeElement}
-            />
-          )
-        )}
+        {elements.map((element: Element) => (
+          <SidebarElement
+            key={element.id}
+            text={element.text}
+            onClick={() => {
+              onElementClickHandler(element.id);
+            }}
+            isActive={element.id === activeElement}
+          />
+        ))}
         ;
       </ul>
     </div>
