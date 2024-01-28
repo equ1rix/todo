@@ -1,5 +1,3 @@
-import React from "react";
-
 export const mock = () => {};
 
 export const getFormattedDate = (date = new Date()) => {

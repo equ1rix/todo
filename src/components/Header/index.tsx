@@ -1,7 +1,6 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
-import { getFormattedDate } from "../../Helpers";
-import { mock } from "../../Helpers";
+import { getFormattedDate, mock } from "../../Helpers";
 
 import Button from "../Button";
 
