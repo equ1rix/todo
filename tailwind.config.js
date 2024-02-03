@@ -13,6 +13,7 @@ module.exports = {
         },
         border: {
           primaryBorder: "#6c29d9",
+          defaultBorder: "#1d293e",
         },
         primaryBG: "#5b20b7",
         disabledBG: "#808080",
