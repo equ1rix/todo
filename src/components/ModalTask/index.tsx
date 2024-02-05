@@ -1,10 +1,11 @@
 import React from "react";
 
+import { mock } from "../../Helpers";
+
 import Modal from "../Modal";
 import Input from "../Input";
 import Textarea from "../Textarea";
 import Button from "../Button";
-import { mock } from "../../Helpers";
 
 type ModalProps = {
   onClose: () => void;
