@@ -6,7 +6,7 @@ import Button from "../Button";
 
 type HeaderProps = {
   onAdd: () => void;
-  date: string;
+  date?: string;
 };
 
 const Header = ({ onAdd = mock, date = getFormattedDate() }: HeaderProps) => {

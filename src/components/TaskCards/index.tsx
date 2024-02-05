@@ -22,7 +22,7 @@ const TaskCards = ({}) => {
             text={card.text}
             onDelete={mock}
             type={card.type}
-          ></Card>
+          />
         </div>
       ))}
     </div>

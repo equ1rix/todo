@@ -6,14 +6,14 @@ import Sidebar from "../Sidebar";
 import Header from "../Header";
 import TaskCards from "../TaskCards";
 
-const Homepage = ({}) => {
+const Homepage = () => {
   return (
     <div className="flex h-[100vh]">
       <div className="w-[450px] ">
         <Sidebar />
       </div>
       <div className="flex flex-col w-[100%]">
-        <Header onAdd={mock} date={getFormattedDate()} />
+        <Header onAdd={mock} />
         <TaskCards />
       </div>
     </div>
