@@ -1,30 +1,33 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import { mock } from "../../Helpers";
 
 import Card from "../Card";
 
-const dataMock = [
-  { id: 1, title: "Task 1", text: "Drink tea", type: "PRIMARY" },
-  { id: 2, title: "Task 2", text: "Sleep", type: "DEFAULT" },
-  { id: 3, title: "Task 3", text: "Wake up", type: "DEFAULT" },
-  { id: 4, title: "Task 4", text: "Open the door", type: "DEFAULT" },
-];
-
 const TaskCards = ({}) => {
+  const tasks = useSelector((state: any) => state.tasks);
+
+  if (!Array.isArray(tasks) || tasks.length === 0) {
+    return null;
+  }
   return (
-    <div className="bg-modalBG grid grid-cols-5 gap-4 p-4 h-full">
-      {dataMock.map((card) => (
-        <div>
-          <Card
-            key={card.id}
-            title={card.title}
-            text={card.text}
-            onDelete={mock}
-            type={card.type}
-          />
-        </div>
-      ))}
+    <div className="grid grid-cols-5 gap-4 p-4 h-full">
+      {tasks.map(
+        (
+          card: { valueTitle: string; valueDescription: string; type: string },
+          index: number
+        ) => (
+          <div key={index}>
+            <Card
+              title={card.valueTitle}
+              text={card.valueDescription}
+              type={card.type}
+              onDelete={mock}
+            />
+          </div>
+        )
+      )}
     </div>
   );
 };
