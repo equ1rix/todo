@@ -37,11 +37,13 @@ const ModalTask = ({ onClose = mock }: ModalProps) => {
   return (
     <Modal onClose={onClose} title="Add a task">
       <Input
+        value={valueTitle}
         onChange={onTitleChange}
         label="Title"
         placeholder="e.g., study for the test"
       />
       <Textarea
+        value={valueDescription}
         onChange={onDescriptionChange}
         label="Description (optional)"
         placeholder="e.g., study for the test"
