@@ -17,7 +17,7 @@ const Textarea = ({
   onChange = mock,
   value = "",
 }: TextareaProps) => {
-  const onDescripionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onChange(e.target.value);
   };
 
@@ -26,7 +26,7 @@ const Textarea = ({
       {label && <Label label={label} />}
       <textarea
         value={value}
-        onChange={onDescripionChange}
+        onChange={onChangeHandler}
         placeholder={placeholder}
         className="bg-inputBG text-text-defaultTitle p-2 placeholder-text-defaultTitle rounded-lg w-[100%] min-h-[70px]"
       ></textarea>

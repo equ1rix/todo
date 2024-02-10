@@ -1,19 +1,21 @@
-import { ADD_TASK } from "./actions";
+import { ADD_TASK, REDUCER_NAME } from "./TaskActions";
 
-interface Task {
+export { REDUCER_NAME };
+
+export interface Task {
   id: number;
   title: string;
-  text: string;
+  description: string;
   type: string;
 }
-interface AppState {
+export interface AppState {
   tasks: Task[];
 }
 const initialState: AppState = {
   tasks: [],
 };
 
-const appReducer = (state = initialState, action: any): AppState => {
+const TaskReducer = (state = initialState, action: any): AppState => {
   switch (action.type) {
     case ADD_TASK:
       const newTask: Task = action.payload;
@@ -26,4 +28,4 @@ const appReducer = (state = initialState, action: any): AppState => {
       return state;
   }
 };
-export default appReducer;
+export default TaskReducer;

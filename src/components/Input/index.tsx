@@ -17,7 +17,7 @@ const Input = ({
   onChange = mock,
   value = "",
 }: InputProps) => {
-  const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
   };
 
@@ -26,7 +26,7 @@ const Input = ({
       {label && <Label label={label} />}
       <input
         value={value}
-        onChange={onTitleChange}
+        onChange={onChangeHandler}
         placeholder={placeholder}
         className="bg-inputBG text-text-defaultTitle p-2 placeholder-text-defaultTitle rounded-lg w-[100%] min-h-[40px]"
       ></input>
