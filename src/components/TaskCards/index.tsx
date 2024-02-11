@@ -1,14 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 import { mock } from "../../Helpers";
 import { Task } from "../../redux/Task/TaskReducer";
-import { selectTasks } from "../../redux/Task/TaskSelector";
 
 import Card from "../Card";
 
-const TaskCards = () => {
-  const tasks = useSelector(selectTasks);
+type TaskCardsProps = {
+  tasks: Task[];
+};
+
+const TaskCards = ({ tasks }: TaskCardsProps) => {
   return (
     <div className="grid grid-cols-5 gap-4 p-4 h-full">
       {tasks &&
