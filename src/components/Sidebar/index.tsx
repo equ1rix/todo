@@ -11,6 +11,10 @@ type Element = {
   id: number;
 };
 
+type SidebarProps = {
+  onAdd: () => void;
+};
+
 const elements: Element[] = [
   {
     id: 0,
@@ -24,7 +28,7 @@ const elements: Element[] = [
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ onAdd = mock }: SidebarProps) => {
   const [activeElement, setActiveElement] = useState<number>(elements[0].id);
 
   const onElementClickHandler = (id: number) => setActiveElement(id);
@@ -34,7 +38,7 @@ const Sidebar = () => {
       <h3 className="text-center text-text-light font-bold py-2 px-4 text-xl">
         TO-DO LIST
       </h3>
-      <Button onClick={mock} text="Add new Task" />
+      <Button onClick={onAdd} text="Add new Task" />
       <ul className="mt-[30px]">
         {elements.map((element: Element) => (
           <SidebarElement

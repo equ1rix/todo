@@ -1,32 +1,28 @@
 import React from "react";
 
 import { mock } from "../../Helpers";
+import { Task } from "../../redux/Task/TaskReducer";
 
 import Card from "../Card";
 
-const dataMock = [
-  { id: 1, title: "Task 1", text: "Drink tea", type: "PRIMARY" },
-  { id: 2, title: "Task 2", text: "Sleep", type: "DEFAULT" },
-  { id: 3, title: "Task 3", text: "Wake up", type: "DEFAULT" },
-  { id: 4, title: "Task 4", text: "Open the door", type: "DEFAULT" },
-];
+type TaskCardsProps = {
+  tasks: Task[];
+};
 
-const TaskCards = ({}) => {
-  return (
-    <div className="bg-modalBG grid grid-cols-5 gap-4 p-4 h-full">
-      {dataMock.map((card) => (
-        <div>
+const TaskCards = ({ tasks }: TaskCardsProps) => (
+  <div className="grid grid-cols-5 gap-4 p-4 h-full">
+    {tasks &&
+      tasks.map((card: Task, index: number) => (
+        <div key={index}>
           <Card
-            key={card.id}
             title={card.title}
-            text={card.text}
-            onDelete={mock}
+            text={card.description}
             type={card.type}
+            onDelete={mock}
           />
         </div>
       ))}
-    </div>
-  );
-};
+  </div>
+);
 
 export default TaskCards;

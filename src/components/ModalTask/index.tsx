@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { mock } from "../../Helpers";
+import { addTodo } from "../../redux/Task/TaskActions";
 
 import Modal from "../Modal";
 import Input from "../Input";
@@ -9,36 +11,40 @@ import Button from "../Button";
 
 type ModalProps = {
   onClose: () => void;
-  valueTitle: string;
-  valueDescription: string;
-  onTitleChange: () => void;
-  onDescriptonChange: () => void;
-  onAdd: (title: string, description: string) => void;
+  title?: string;
+  description?: string;
 };
 
-const ModalTask = ({
-  onClose = mock,
-  valueTitle = "",
-  valueDescription = "",
-  onTitleChange,
-  onDescriptonChange,
-  onAdd = mock,
-}: ModalProps) => {
+const ModalTask = ({ onClose = mock }: ModalProps) => {
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+
+  const dispatch = useDispatch();
+
+  const onTitleChange = (value: string) => {
+    setTitle(value);
+  };
+
+  const onDescriptionChange = (value: string) => {
+    setDescription(value);
+  };
+
   const onAddHandler = () => {
-    onAdd(valueTitle, valueDescription);
+    dispatch(addTodo({ title, description }));
+    onClose();
   };
 
   return (
     <Modal onClose={onClose} title="Add a task">
       <Input
-        value={valueTitle}
+        value={title}
         onChange={onTitleChange}
         label="Title"
         placeholder="e.g., study for the test"
       />
       <Textarea
-        value={valueDescription}
-        onChange={onDescriptonChange}
+        value={description}
+        onChange={onDescriptionChange}
         label="Description (optional)"
         placeholder="e.g., study for the test"
       />

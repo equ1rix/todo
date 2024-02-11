@@ -28,7 +28,7 @@ const Card = ({
   onDelete = mock,
   title = "",
   text = "",
-  type = CARD_TYPE.PRIMARY,
+  type = CARD_TYPE.DEFAULT,
 }: CardProps) => {
   const cardStyle = CARD_STYLE[type];
 
