@@ -7,11 +7,14 @@ import Sidebar from "../Sidebar";
 import Header from "../Header";
 import TaskCards from "../TaskCards";
 import ModalTask from "../ModalTask";
+import { useDispatch } from "react-redux";
+import { removeTodo } from "../../redux/Task/TaskActions";
 
 const Homepage = () => {
+  const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -21,6 +24,10 @@ const Homepage = () => {
     setIsModalOpen(false);
   };
 
+  const removeTodoHandler = (index: number) => {
+    dispatch(removeTodo(index));
+  };
+
   return (
     <div className="flex h-[100vh]">
       <div className="w-[450px] ">
@@ -28,7 +35,7 @@ const Homepage = () => {
       </div>
       <div className="flex flex-col w-[100%] bg-modalBG">
         <Header onAdd={openModal} />
-        <TaskCards tasks={tasks} />
+        <TaskCards removeTodo={removeTodoHandler} tasks={tasks} />
       </div>
       {isModalOpen && <ModalTask onClose={closeModal} />}
     </div>

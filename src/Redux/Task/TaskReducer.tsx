@@ -1,4 +1,4 @@
-import { ADD_TASK, REDUCER_NAME } from "./TaskActions";
+import { ADD_TASK, REDUCER_NAME, REMOVE_TASK } from "./TaskActions";
 
 export { REDUCER_NAME };
 
@@ -22,6 +22,13 @@ const TaskReducer = (state = initialState, action: any): AppState => {
       return {
         ...state,
         tasks: [...state.tasks, newTask],
+      };
+    case REMOVE_TASK:
+      const updatedTasks = [...state.tasks];
+      updatedTasks.splice(action.payload.index, 1);
+      return {
+        ...state,
+        tasks: updatedTasks,
       };
 
     default:
