@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { mock } from "../../Helpers";
@@ -8,14 +8,21 @@ import Modal from "../Modal";
 import Input from "../Input";
 import Textarea from "../Textarea";
 import Button from "../Button";
+import Checkbox from "../CheckBox";
 
 type ModalProps = {
   onClose: () => void;
   title?: string;
   description?: string;
+  checked?: boolean;
+  onChange?: (checked: boolean) => void;
 };
 
-const ModalTask = ({ onClose = mock }: ModalProps) => {
+const ModalTask = ({
+  onClose = mock,
+  checked = false,
+  onChange = mock,
+}: ModalProps) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
@@ -30,7 +37,7 @@ const ModalTask = ({ onClose = mock }: ModalProps) => {
   };
 
   const onAddHandler = () => {
-    dispatch(addTodo({ title, description }));
+    dispatch(addTodo({ title, description, checked }));
     onClose();
   };
 
@@ -47,6 +54,11 @@ const ModalTask = ({ onClose = mock }: ModalProps) => {
         onChange={onDescriptionChange}
         label="Description (optional)"
         placeholder="e.g., study for the test"
+      />
+      <Checkbox
+        label="Mark as favorite"
+        checked={checked}
+        onChange={onChange}
       />
       <Button text="Add a task" onClick={onAddHandler} />
     </Modal>

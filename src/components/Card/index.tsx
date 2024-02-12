@@ -1,6 +1,6 @@
 import React from "react";
 
-import { DeleteButton } from "../IconButton";
+import { DeleteButton, FavoriteButton } from "../IconButton";
 import { mock } from "../../Helpers";
 
 export const CARD_TYPE = {
@@ -19,16 +19,20 @@ const CARD_STYLE: Record<CardType, string> = {
 
 type CardProps = {
   onDelete: () => void;
+  onFavorite: () => void;
   title?: string;
   text?: string;
   type?: CardType;
+  favoriteColor?: string;
 };
 
 const Card = ({
   onDelete = mock,
+  onFavorite = mock,
   title = "",
   text = "",
   type = CARD_TYPE.DEFAULT,
+  favoriteColor = "",
 }: CardProps) => {
   const cardStyle = CARD_STYLE[type];
 
@@ -51,6 +55,7 @@ const Card = ({
       <div
         className={`flex cards-center justify-end h-[50px] border-dashed border-t-2 ${borderColor}`}
       >
+        <FavoriteButton onClick={onFavorite} fill={favoriteColor} />
         <DeleteButton onClick={onDelete} />
       </div>
     </div>
