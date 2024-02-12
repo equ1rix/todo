@@ -18,19 +18,20 @@ const initialState: AppState = {
 const TaskReducer = (state = initialState, action: any): AppState => {
   switch (action.type) {
     case ADD_TASK:
-      const newTask: Task = action.payload;
+      const newTask: Task = {
+        id: state.tasks.length,
+        ...action.payload,
+      };
       return {
         ...state,
         tasks: [...state.tasks, newTask],
       };
     case REMOVE_TASK:
-      const updatedTasks = [...state.tasks];
-      updatedTasks.splice(action.payload.index, 1);
+      const { id } = action.payload;
       return {
         ...state,
-        tasks: updatedTasks,
+        tasks: state.tasks.filter((task) => task.id !== id),
       };
-
     default:
       return state;
   }

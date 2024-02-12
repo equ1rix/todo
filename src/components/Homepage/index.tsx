@@ -24,8 +24,8 @@ const Homepage = () => {
     setIsModalOpen(false);
   };
 
-  const removeTodoHandler = (index: number) => {
-    dispatch(removeTodo(index));
+  const removeTodoHandler = (id: number) => {
+    dispatch(removeTodo(id));
   };
 
   return (

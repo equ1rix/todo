@@ -18,7 +18,7 @@ export const addTodo = ({
   },
 });
 
-export const removeTodo = (index: number) => ({
+export const removeTodo = (id: number) => ({
   type: REMOVE_TASK,
-  payload: index,
+  payload: { id },
 });
