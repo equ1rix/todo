@@ -1,4 +1,5 @@
 import { ADD_TASK, REDUCER_NAME, REMOVE_TASK } from "./TaskActions";
+import { v4 as uuidv4 } from "uuid";
 
 export { REDUCER_NAME };
 
@@ -19,7 +20,7 @@ const TaskReducer = (state = initialState, action: any): AppState => {
   switch (action.type) {
     case ADD_TASK:
       const newTask: Task = {
-        id: state.tasks.length,
+        id: uuidv4(),
         ...action.payload,
       };
       return {
