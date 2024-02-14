@@ -7,10 +7,10 @@ import Card from "../Card";
 
 type TaskCardsProps = {
   tasks: Task[];
-  isFavorite: (id: number) => void;
+  setFavoriteTask: (id: number) => void;
 };
 
-const TaskCards = ({ tasks, isFavorite = mock }: TaskCardsProps) => {
+const TaskCards = ({ tasks, setFavoriteTask = mock }: TaskCardsProps) => {
   return (
     <div className="grid grid-cols-5 gap-4 p-4 h-full">
       {tasks &&
@@ -20,8 +20,8 @@ const TaskCards = ({ tasks, isFavorite = mock }: TaskCardsProps) => {
               title={card.title}
               text={card.description}
               onDelete={mock}
-              onFavorite={() => isFavorite(card.id)}
-              favoriteColor={card.checked ? "#f43f5e" : "#ffffff"}
+              onSetFavorite={() => setFavoriteTask(card.id)}
+              isFavorite={card.isFavorite}
             />
           </div>
         ))}

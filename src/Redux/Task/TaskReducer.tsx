@@ -1,4 +1,4 @@
-import { ADD_TASK, REDUCER_NAME, IS_FAVORITE } from "./TaskActions";
+import { ADD_TASK, REDUCER_NAME, SET_FAVORITE } from "./TaskActions";
 import { v4 as uuidv4 } from "uuid";
 
 export { REDUCER_NAME };
@@ -7,7 +7,7 @@ export interface Task {
   id: number;
   title: string;
   description: string;
-  checked: boolean;
+  isFavorite: boolean;
 }
 export interface AppState {
   tasks: Task[];
@@ -27,7 +27,7 @@ const TaskReducer = (state = initialState, action: any): AppState => {
         ...state,
         tasks: [...state.tasks, newTask],
       };
-    case IS_FAVORITE:
+    case SET_FAVORITE:
       const { id } = action.payload;
       return {
         ...state,
@@ -35,7 +35,7 @@ const TaskReducer = (state = initialState, action: any): AppState => {
           card.id === id
             ? {
                 ...card,
-                checked: !card.checked,
+                isFavorite: !card.isFavorite,
               }
             : card
         ),

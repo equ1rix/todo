@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectTasks } from "../../redux/Task/TaskSelector";
-import { toggleFavorite } from "../../redux/Task/TaskActions";
+import { setFavorite } from "../../redux/Task/TaskActions";
 
 import Sidebar from "../Sidebar";
 import Header from "../Header";
@@ -13,25 +13,19 @@ const Homepage = () => {
   const tasks = useSelector(selectTasks);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
   const openModal = () => {
     setIsModalOpen(true);
-    setIsFavorite(false);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
-  const onCheckboxChange = (checked: boolean) => {
-    setIsFavorite(checked);
-  };
-
-  const handleFavoriteToggle = (id: number) => {
-    dispatch(toggleFavorite(id));
+  const updateFavoriteStatus = (id: number) => {
+    dispatch(setFavorite(id));
   };
 
   return (
@@ -41,15 +35,9 @@ const Homepage = () => {
       </div>
       <div className="flex flex-col w-[100%] bg-modalBG">
         <Header onAdd={openModal} />
-        <TaskCards tasks={tasks} isFavorite={handleFavoriteToggle} />
+        <TaskCards tasks={tasks} setFavoriteTask={updateFavoriteStatus} />
       </div>
-      {isModalOpen && (
-        <ModalTask
-          onClose={closeModal}
-          checked={isFavorite}
-          onChange={onCheckboxChange}
-        />
-      )}
+      {isModalOpen && <ModalTask onClose={closeModal} />}
     </div>
   );
 };

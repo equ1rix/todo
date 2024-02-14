@@ -14,17 +14,12 @@ type ModalProps = {
   onClose: () => void;
   title?: string;
   description?: string;
-  checked?: boolean;
-  onChange?: (checked: boolean) => void;
 };
 
-const ModalTask = ({
-  onClose = mock,
-  checked = false,
-  onChange = mock,
-}: ModalProps) => {
+const ModalTask = ({ onClose = mock }: ModalProps) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
@@ -37,8 +32,12 @@ const ModalTask = ({
   };
 
   const onAddHandler = () => {
-    dispatch(addTodo({ title, description, checked }));
+    dispatch(addTodo({ title, description, isFavorite }));
     onClose();
+  };
+
+  const onCheckboxChange = (checked: boolean) => {
+    setIsFavorite(checked);
   };
 
   return (
@@ -57,8 +56,8 @@ const ModalTask = ({
       />
       <Checkbox
         label="Mark as favorite"
-        checked={checked}
-        onChange={onChange}
+        value={isFavorite}
+        onChange={onCheckboxChange}
       />
       <Button text="Add a task" onClick={onAddHandler} />
     </Modal>

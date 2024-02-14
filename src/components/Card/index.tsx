@@ -19,20 +19,20 @@ const CARD_STYLE: Record<CardType, string> = {
 
 type CardProps = {
   onDelete: () => void;
-  onFavorite: () => void;
+  onSetFavorite: () => void;
   title?: string;
   text?: string;
   type?: CardType;
-  favoriteColor?: string;
+  isFavorite?: boolean;
 };
 
 const Card = ({
   onDelete = mock,
-  onFavorite = mock,
+  onSetFavorite = mock,
   title = "",
   text = "",
   type = CARD_TYPE.DEFAULT,
-  favoriteColor = "",
+  isFavorite = false,
 }: CardProps) => {
   const cardStyle = CARD_STYLE[type];
 
@@ -55,7 +55,10 @@ const Card = ({
       <div
         className={`flex cards-center justify-end h-[50px] border-dashed border-t-2 ${borderColor}`}
       >
-        <FavoriteButton onClick={onFavorite} fill={favoriteColor} />
+        <FavoriteButton
+          onClick={onSetFavorite}
+          fill={isFavorite ? "#f43f5e" : "#ffffff"}
+        />
         <DeleteButton onClick={onDelete} />
       </div>
     </div>
