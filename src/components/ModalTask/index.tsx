@@ -8,6 +8,7 @@ import Modal from "../Modal";
 import Input from "../Input";
 import Textarea from "../Textarea";
 import Button from "../Button";
+import DatePicker from "../DatePicker";
 
 type ModalProps = {
   onClose: () => void;
@@ -18,6 +19,7 @@ type ModalProps = {
 const ModalTask = ({ onClose = mock }: ModalProps) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [createDate, setCreateDate] = useState<Date>(new Date());
 
   const dispatch = useDispatch();
 
@@ -30,8 +32,12 @@ const ModalTask = ({ onClose = mock }: ModalProps) => {
   };
 
   const onAddHandler = () => {
-    dispatch(addTask({ title, description }));
+    dispatch(addTask({ title, description, dueDate: createDate, createDate }));
     onClose();
+  };
+
+  const setDate = (date: Date) => {
+    setCreateDate(date);
   };
 
   return (
@@ -42,6 +48,7 @@ const ModalTask = ({ onClose = mock }: ModalProps) => {
         label="Title"
         placeholder="e.g., study for the test"
       />
+      <DatePicker date={createDate} onChange={setDate} label="Date" />
       <Textarea
         value={description}
         onChange={onDescriptionChange}
