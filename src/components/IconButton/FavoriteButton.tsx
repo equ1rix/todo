@@ -1,8 +1,9 @@
 import React from "react";
 
-import IconButton from "./IconButton";
-import { FavoriteIcon } from "./Icons";
 import { mock } from "../../Helpers";
+
+import { FavoriteIcon } from "./Icons";
+import IconButton from "./IconButton";
 
 type ButtonProps = {
   onClick: () => void;
