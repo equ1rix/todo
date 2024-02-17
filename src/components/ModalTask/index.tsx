@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { mock } from "../../Helpers";
-import { addTodo } from "../../redux/Task/TaskActions";
+import { addTask } from "../../redux/Task/TaskActions";
 
 import Modal from "../Modal";
 import Input from "../Input";
@@ -32,7 +32,7 @@ const ModalTask = ({ onClose = mock }: ModalProps) => {
   };
 
   const onAddHandler = () => {
-    dispatch(addTodo({ title, description, isFavorite }));
+    dispatch(addTask({ title, description, isFavorite }));
     onClose();
   };
 

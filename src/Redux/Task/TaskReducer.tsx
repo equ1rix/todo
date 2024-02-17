@@ -1,4 +1,9 @@
-import { ADD_TASK, REDUCER_NAME, SET_FAVORITE } from "./TaskActions";
+import {
+  ADD_TASK,
+  REDUCER_NAME,
+  SET_FAVORITE,
+  REMOVE_TASK,
+} from "./TaskActions";
 import { v4 as uuidv4 } from "uuid";
 
 export { REDUCER_NAME };
@@ -41,6 +46,12 @@ const TaskReducer = (state = initialState, action: any): AppState => {
         ),
       };
 
+    case REMOVE_TASK:
+      const { id: taskId } = action.payload;
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.id !== taskId),
+      };
     default:
       return state;
   }
