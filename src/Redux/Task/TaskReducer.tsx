@@ -1,4 +1,9 @@
-import { ADD_TASK, REDUCER_NAME, REMOVE_TASK } from "./TaskActions";
+import {
+  ADD_TASK,
+  REDUCER_NAME,
+  SET_FAVORITE,
+  REMOVE_TASK,
+} from "./TaskActions";
 import { v4 as uuidv4 } from "uuid";
 
 export { REDUCER_NAME };
@@ -7,7 +12,7 @@ export interface Task {
   id: number;
   title: string;
   description: string;
-  type: string;
+  isFavorite: boolean;
 }
 export interface AppState {
   tasks: Task[];
@@ -27,11 +32,25 @@ const TaskReducer = (state = initialState, action: any): AppState => {
         ...state,
         tasks: [...state.tasks, newTask],
       };
-    case REMOVE_TASK:
+    case SET_FAVORITE:
       const { id } = action.payload;
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.id !== id),
+        tasks: state.tasks.map((card) =>
+          card.id === id
+            ? {
+                ...card,
+                isFavorite: !card.isFavorite,
+              }
+            : card
+        ),
+      };
+
+    case REMOVE_TASK:
+      const { id: taskId } = action.payload;
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.id !== taskId),
       };
     default:
       return state;

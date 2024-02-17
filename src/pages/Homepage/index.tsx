@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectTasks } from "../../redux/Task/TaskSelector";
+import { setFavorite } from "../../redux/Task/TaskActions";
 import { removeTask } from "../../redux/Task/TaskActions";
 
 import Sidebar from "../../components/Sidebar";
@@ -23,6 +24,10 @@ const Homepage = () => {
     setIsModalOpen(false);
   };
 
+  const updateFavoriteStatus = (id: number) => {
+    dispatch(setFavorite(id));
+  };
+
   const deleteTask = (id: number) => {
     dispatch(removeTask(id));
   };
@@ -34,7 +39,11 @@ const Homepage = () => {
       </div>
       <div className="flex flex-col w-[100%] bg-modalBG">
         <Header onAdd={openModal} />
-        <TaskCards onRemoveTask={deleteTask} tasks={tasks} />
+        <TaskCards
+          tasks={tasks}
+          setFavoriteTask={updateFavoriteStatus}
+          onRemoveTask={deleteTask}
+        />
       </div>
       {isModalOpen && <ModalTask onClose={closeModal} />}
     </div>
