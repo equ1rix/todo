@@ -2,7 +2,7 @@ import {
   ADD_TASK,
   REDUCER_NAME,
   REMOVE_TASK,
-  UPDATE_TASK_DATE,
+  UPDATE_TASK_DUE_DATE,
 } from "./TaskActions";
 import { v4 as uuidv4 } from "uuid";
 
@@ -40,7 +40,7 @@ const TaskReducer = (state = initialState, action: any): AppState => {
         tasks: state.tasks.filter((task) => task.id !== id),
       };
 
-    case UPDATE_TASK_DATE:
+    case UPDATE_TASK_DUE_DATE:
       const { id: taskId, dueDate } = action.payload;
       return {
         ...state,

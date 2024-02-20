@@ -8,20 +8,22 @@ import Card from "../Card";
 type TaskCardsProps = {
   tasks: Task[];
   onRemoveTask: (index: number) => void;
+  getNewDueDate: (id: number, newDate: Date) => void;
 };
 
-const TaskCards = ({ tasks = [], onRemoveTask = mock }: TaskCardsProps) => (
+const TaskCards = ({
+  tasks = [],
+  onRemoveTask = mock,
+  getNewDueDate = mock,
+}: TaskCardsProps) => (
   <div className="grid grid-cols-5 gap-4 p-4 h-full">
     {tasks &&
       tasks.map((card: Task) => (
         <div key={card.id}>
           <Card
-            title={card.title}
-            text={card.description}
-            type={card.type}
+            {...card}
             onDelete={() => onRemoveTask(card.id)}
-            date={card.dueDate}
-            taskId={card.id}
+            onChange={getNewDueDate}
           />
         </div>
       ))}
