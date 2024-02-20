@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { mock } from "../../Helpers";
 
@@ -21,12 +21,12 @@ const CARD_STYLE: Record<CardType, string> = {
 
 type CardProps = {
   onDelete: () => void;
-  onChange: (id: number, newDate: Date) => void;
+  onChange: (id: number, newDate: string) => void;
   id: number;
   title: string;
   description: string;
   type: string;
-  dueDate: Date;
+  dueDate: string;
 };
 
 const Card = ({
@@ -35,10 +35,11 @@ const Card = ({
   title = "",
   description = "",
   type = CARD_TYPE.DEFAULT,
-  dueDate = new Date(),
+  dueDate = `${new Date()}`,
   id,
 }: CardProps) => {
   const cardStyle = CARD_STYLE[type];
+  const objDate = new Date(dueDate);
 
   const titleClass =
     type === "PRIMARY"
@@ -50,7 +51,7 @@ const Card = ({
       ? "border-border-primaryBorder"
       : "border-border-defaultBorder";
 
-  const handleDateChange = (id: number, date: Date) => {
+  const handleDateChange = (id: number, date: string) => {
     onChange(id, date);
   };
   return (
@@ -61,7 +62,7 @@ const Card = ({
       </div>
       <div>
         <DatePicker
-          date={dueDate}
+          date={objDate}
           onChange={(date) => handleDateChange(id, date)}
         />
       </div>

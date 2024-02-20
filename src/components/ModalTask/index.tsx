@@ -9,8 +9,6 @@ import Input from "../Input";
 import Textarea from "../Textarea";
 import Button from "../Button";
 import DatePicker from "../DatePicker";
-import { useSelector } from "react-redux";
-import { selectTasks } from "../../redux/Task/TaskSelector";
 
 type ModalProps = {
   onClose: () => void;
@@ -23,7 +21,6 @@ const ModalTask = ({ onClose = mock }: ModalProps) => {
   const [description, setDescription] = useState<string>("");
   const [dueDate, setDueDate] = useState<Date>(new Date());
 
-  const tasks = useSelector(selectTasks);
   const dispatch = useDispatch();
 
   const onTitleChange = (value: string) => {
@@ -39,16 +36,16 @@ const ModalTask = ({ onClose = mock }: ModalProps) => {
       addTask({
         title,
         description,
-        createDate: new Date(),
-        dueDate,
+        createDate: `${new Date().toISOString()}`,
+        dueDate: `${dueDate.toISOString()}`,
       })
     );
     onClose();
-    console.log(tasks);
   };
 
-  const setDate = (date: Date) => {
-    setDueDate(date);
+  const setDate = (date: string) => {
+    const objDate = new Date(date);
+    setDueDate(objDate);
   };
 
   return (

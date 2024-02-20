@@ -6,13 +6,13 @@ import Label from "../Label";
 
 type DatePickerProps = {
   date: Date;
-  onChange: (date: Date) => void;
+  onChange: (date: string) => void;
   label?: string;
 };
 
 const DatePicker = ({ date, onChange = mock, label = "" }: DatePickerProps) => {
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newDate = new Date(e.target.value);
+    const newDate = new Date(e.target.value).toISOString();
     onChange(newDate);
   };
 

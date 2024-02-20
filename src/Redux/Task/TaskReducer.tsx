@@ -13,7 +13,7 @@ export interface Task {
   title: string;
   description: string;
   type: string;
-  dueDate: Date;
+  dueDate: string;
 }
 export interface AppState {
   tasks: Task[];

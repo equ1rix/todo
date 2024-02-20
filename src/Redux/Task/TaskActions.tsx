@@ -11,8 +11,8 @@ export const addTask = ({
 }: {
   title: string;
   description: string;
-  dueDate: Date;
-  createDate: Date;
+  dueDate: string;
+  createDate: string;
 }) => ({
   type: ADD_TASK,
   payload: {
@@ -28,7 +28,7 @@ export const removeTask = (id: number) => ({
   payload: { id },
 });
 
-export const updateTaskDueDate = (id: number, dueDate: Date) => ({
+export const updateTaskDueDate = (id: number, dueDate: string) => ({
   type: UPDATE_TASK_DUE_DATE,
   payload: {
     id,

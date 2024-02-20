@@ -8,7 +8,7 @@ import Card from "../Card";
 type TaskCardsProps = {
   tasks: Task[];
   onRemoveTask: (index: number) => void;
-  getNewDueDate: (id: number, newDate: Date) => void;
+  getNewDueDate: (id: number, newDate: string) => void;
 };
 
 const TaskCards = ({

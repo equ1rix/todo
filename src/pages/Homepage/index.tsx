@@ -14,8 +14,6 @@ const Homepage = () => {
   const tasks = useSelector(selectTasks);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [id, setId] = useState<number>(0);
-  const [dueDate, setDueDate] = useState<Date>(new Date());
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -29,9 +27,8 @@ const Homepage = () => {
     dispatch(removeTask(id));
   };
 
-  const getNewDueDate = (id: number, newDate: Date) => {
+  const getNewDueDate = (id: number, newDate: string) => {
     dispatch(updateTaskDueDate(id, newDate));
-    console.log(tasks);
   };
 
   return (
