@@ -15,19 +15,28 @@ const TaskCards = ({
   tasks = [],
   onRemoveTask = mock,
   onDueDateChange = mock,
-}: TaskCardsProps) => (
-  <div className="grid grid-cols-5 gap-4 p-4 h-full">
-    {tasks &&
-      tasks.map((card: Task) => (
-        <div key={card.id}>
-          <Card
-            {...card}
-            onDelete={() => onRemoveTask(card.id)}
-            onChangeDueDate={onDueDateChange}
-          />
-        </div>
-      ))}
-  </div>
-);
+}: TaskCardsProps) => {
+  const calculateDueDateApproaching = (dueDate: string) => {
+    const approachingThreshold = 24 * 60 * 60 * 1000;
+    const timeDifference = new Date(dueDate).getTime() - new Date().getTime();
+    return timeDifference <= approachingThreshold;
+  };
+
+  return (
+    <div className="grid grid-cols-5 gap-4 p-4 h-full">
+      {tasks &&
+        tasks.map((card: Task) => (
+          <div key={card.id}>
+            <Card
+              {...card}
+              onDelete={() => onRemoveTask(card.id)}
+              isOutdated={calculateDueDateApproaching(card.dueDate)}
+              onChangeDueDate={onDueDateChange}
+            />
+          </div>
+        ))}
+    </div>
+  );
+};
 
 export default TaskCards;

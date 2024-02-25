@@ -19,7 +19,12 @@ type ModalProps = {
 const ModalTask = ({ onClose = mock }: ModalProps) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [dueDate, setDueDate] = useState<string>(new Date().toISOString());
+  const [dueDate, setDueDate] = useState<string>(() => {
+    const nextDayDate = new Date();
+    nextDayDate.setDate(nextDayDate.getDate() + 1);
+    nextDayDate.setUTCHours(0, 0, 0, 0);
+    return nextDayDate.toISOString();
+  });
 
   const dispatch = useDispatch();
 
@@ -43,10 +48,6 @@ const ModalTask = ({ onClose = mock }: ModalProps) => {
     onClose();
   };
 
-  const setDate = (date: string) => {
-    setDueDate(date);
-  };
-
   return (
     <Modal onClose={onClose} title="Add a task">
       <Input
@@ -55,7 +56,7 @@ const ModalTask = ({ onClose = mock }: ModalProps) => {
         label="Title"
         placeholder="e.g., study for the test"
       />
-      <DatePicker date={dueDate} onChange={setDate} label="Date" />
+      <DatePicker date={dueDate} onChange={setDueDate} label="Date" />
       <Textarea
         value={description}
         onChange={onDescriptionChange}

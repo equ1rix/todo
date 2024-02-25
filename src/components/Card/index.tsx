@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { mock } from "../../Helpers";
 
 import { DeleteButton } from "../IconButton";
 import DatePicker from "../DatePicker";
-import { useSelector } from "react-redux";
-import { selectTasks } from "../../redux/Task/TaskSelector";
 
 export const CARD_TYPE = {
   PRIMARY: "PRIMARY",
@@ -29,6 +27,8 @@ type CardProps = {
   description: string;
   type: string;
   dueDate: string;
+  createdAt: string;
+  isOutdated: boolean;
 };
 
 const Card = ({
@@ -39,24 +39,9 @@ const Card = ({
   type = CARD_TYPE.DEFAULT,
   dueDate = new Date().toDateString(),
   id,
+  isOutdated = false,
 }: CardProps) => {
   const cardStyle = CARD_STYLE[type];
-
-  const tasks = useSelector(selectTasks);
-
-  const [dueDateApproaching, setDueDateApproaching] = useState<boolean>(false);
-
-  useEffect(() => {
-    const updatedTask = tasks.find((task) => task.id === id);
-    if (updatedTask) {
-      const approachingThreshold = 24 * 60 * 60 * 1000;
-      const timeDifference =
-        new Date(updatedTask.dueDate).getTime() -
-        new Date(updatedTask.createdAt).getTime();
-      const isApproaching = timeDifference <= approachingThreshold;
-      setDueDateApproaching(isApproaching);
-    }
-  }, [tasks]);
 
   const titleClass =
     type === "PRIMARY"
@@ -76,7 +61,7 @@ const Card = ({
       </div>
       <div>
         <DatePicker
-          fill={dueDateApproaching}
+          fill={isOutdated ? "text-text-approaching" : "text-text-defaultTitle"}
           date={dueDate}
           onChange={(date) => onChangeDueDate(id, date)}
         />
