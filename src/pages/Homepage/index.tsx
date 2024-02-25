@@ -27,7 +27,7 @@ const Homepage = () => {
     dispatch(removeTask(id));
   };
 
-  const getNewDueDate = (id: number, newDate: string) => {
+  const onDueDateChange = (id: number, newDate: string) => {
     dispatch(updateTaskDueDate(id, newDate));
   };
 
@@ -41,7 +41,7 @@ const Homepage = () => {
         <TaskCards
           onRemoveTask={deleteTask}
           tasks={tasks}
-          getNewDueDate={getNewDueDate}
+          onDueDateChange={onDueDateChange}
         />
       </div>
       {isModalOpen && <ModalTask onClose={closeModal} />}

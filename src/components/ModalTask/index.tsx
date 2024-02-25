@@ -19,7 +19,7 @@ type ModalProps = {
 const ModalTask = ({ onClose = mock }: ModalProps) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [dueDate, setDueDate] = useState<Date>(new Date());
+  const [dueDate, setDueDate] = useState<string>(new Date().toISOString());
 
   const dispatch = useDispatch();
 
@@ -36,16 +36,15 @@ const ModalTask = ({ onClose = mock }: ModalProps) => {
       addTask({
         title,
         description,
-        createDate: `${new Date().toISOString()}`,
-        dueDate: `${dueDate.toISOString()}`,
+        createdAt: new Date().toISOString(),
+        dueDate: dueDate,
       })
     );
     onClose();
   };
 
   const setDate = (date: string) => {
-    const objDate = new Date(date);
-    setDueDate(objDate);
+    setDueDate(date);
   };
 
   return (

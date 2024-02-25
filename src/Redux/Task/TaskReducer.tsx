@@ -14,6 +14,7 @@ export interface Task {
   description: string;
   type: string;
   dueDate: string;
+  createdAt: string;
 }
 export interface AppState {
   tasks: Task[];

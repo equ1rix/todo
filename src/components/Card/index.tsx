@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { mock } from "../../Helpers";
 
 import { DeleteButton } from "../IconButton";
 import DatePicker from "../DatePicker";
+import { useSelector } from "react-redux";
+import { selectTasks } from "../../redux/Task/TaskSelector";
 
 export const CARD_TYPE = {
   PRIMARY: "PRIMARY",
@@ -21,7 +23,7 @@ const CARD_STYLE: Record<CardType, string> = {
 
 type CardProps = {
   onDelete: () => void;
-  onChange: (id: number, newDate: string) => void;
+  onChangeDueDate: (id: number, newDate: string) => void;
   id: number;
   title: string;
   description: string;
@@ -31,15 +33,30 @@ type CardProps = {
 
 const Card = ({
   onDelete = mock,
-  onChange = mock,
+  onChangeDueDate = mock,
   title = "",
   description = "",
   type = CARD_TYPE.DEFAULT,
-  dueDate = `${new Date()}`,
+  dueDate = new Date().toDateString(),
   id,
 }: CardProps) => {
   const cardStyle = CARD_STYLE[type];
-  const objDate = new Date(dueDate);
+
+  const tasks = useSelector(selectTasks);
+
+  const [dueDateApproaching, setDueDateApproaching] = useState<boolean>(false);
+
+  useEffect(() => {
+    const updatedTask = tasks.find((task) => task.id === id);
+    if (updatedTask) {
+      const approachingThreshold = 24 * 60 * 60 * 1000;
+      const timeDifference =
+        new Date(updatedTask.dueDate).getTime() -
+        new Date(updatedTask.createdAt).getTime();
+      const isApproaching = timeDifference <= approachingThreshold;
+      setDueDateApproaching(isApproaching);
+    }
+  }, [tasks]);
 
   const titleClass =
     type === "PRIMARY"
@@ -51,9 +68,6 @@ const Card = ({
       ? "border-border-primaryBorder"
       : "border-border-defaultBorder";
 
-  const handleDateChange = (id: number, date: string) => {
-    onChange(id, date);
-  };
   return (
     <div className={cardStyle}>
       <div className="min-h-[190px]">
@@ -62,8 +76,9 @@ const Card = ({
       </div>
       <div>
         <DatePicker
-          date={objDate}
-          onChange={(date) => handleDateChange(id, date)}
+          fill={dueDateApproaching}
+          date={dueDate}
+          onChange={(date) => onChangeDueDate(id, date)}
         />
       </div>
       <div

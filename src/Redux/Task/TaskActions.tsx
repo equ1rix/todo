@@ -7,19 +7,19 @@ export const addTask = ({
   title,
   description,
   dueDate,
-  createDate,
+  createdAt,
 }: {
   title: string;
   description: string;
   dueDate: string;
-  createDate: string;
+  createdAt: string;
 }) => ({
   type: ADD_TASK,
   payload: {
     title,
     description,
     dueDate,
-    createDate,
+    createdAt,
   },
 });
 
