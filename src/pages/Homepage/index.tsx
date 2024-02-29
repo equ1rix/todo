@@ -2,8 +2,11 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectTasks } from "../../redux/Task/TaskSelector";
-import { setFavorite } from "../../redux/Task/TaskActions";
-import { removeTask } from "../../redux/Task/TaskActions";
+import {
+  removeTask,
+  updateTaskDueDate,
+  setFavorite,
+} from "../../redux/Task/TaskActions";
 
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
@@ -21,6 +24,10 @@ const Homepage = () => {
     dispatch(removeTask(id));
   };
 
+  const onDueDateChange = (id: number, newDate: string) => {
+    dispatch(updateTaskDueDate(id, newDate));
+  };
+
   return (
     <div className="flex h-[100vh]">
       <div className="w-[450px] ">
@@ -32,6 +39,7 @@ const Homepage = () => {
           tasks={tasks}
           setFavoriteTask={updateFavoriteStatus}
           onRemoveTask={deleteTask}
+          onDueDateChange={onDueDateChange}
         />
       </div>
     </div>

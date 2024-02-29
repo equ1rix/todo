@@ -1,7 +1,9 @@
 import React from "react";
 
-import { DeleteButton, FavoriteButton } from "../IconButton";
 import { mock } from "../../Helpers";
+
+import { DeleteButton, FavoriteButton } from "../IconButton";
+import DatePicker from "../DatePicker";
 
 export const CARD_TYPE = {
   PRIMARY: "PRIMARY",
@@ -19,20 +21,29 @@ const CARD_STYLE: Record<CardType, string> = {
 
 type CardProps = {
   onDelete: () => void;
+  onChangeDueDate: (id: number, newDate: string) => void;
+  id: number;
+  title: string;
+  description: string;
+  type: string;
+  dueDate: string;
+  createdAt: string;
+  isOutdated: boolean;
   onSetFavorite: () => void;
-  title?: string;
-  text?: string;
-  type?: CardType;
   isFavorite?: boolean;
 };
 
 const Card = ({
   onDelete = mock,
   onSetFavorite = mock,
+  onChangeDueDate = mock,
   title = "",
-  text = "",
+  description = "",
   type = CARD_TYPE.DEFAULT,
   isFavorite = false,
+  dueDate = new Date().toDateString(),
+  id,
+  isOutdated = false,
 }: CardProps) => {
   const cardStyle = CARD_STYLE[type];
 
@@ -50,7 +61,14 @@ const Card = ({
     <div className={cardStyle}>
       <div className="min-h-[190px]">
         <h2 className={titleClass}>{title}</h2>
-        <p>{text}</p>
+        <p>{description}</p>
+      </div>
+      <div>
+        <DatePicker
+          fill={isOutdated ? "text-text-approaching" : "text-text-defaultTitle"}
+          date={dueDate}
+          onChange={(date) => onChangeDueDate(id, date)}
+        />
       </div>
       <div
         className={`flex cards-center justify-end h-[50px] border-dashed border-t-2 ${borderColor}`}

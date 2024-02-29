@@ -10,6 +10,7 @@ module.exports = {
           disabled: "#000000",
           defaultTitle: "#d4e9f0",
           default: "#3a668a",
+          approaching: "#f43f5e",
         },
         border: {
           primaryBorder: "#6c29d9",

@@ -3,6 +3,7 @@ import {
   REDUCER_NAME,
   SET_FAVORITE,
   REMOVE_TASK,
+  UPDATE_TASK_DUE_DATE,
 } from "./TaskActions";
 import { v4 as uuidv4 } from "uuid";
 
@@ -13,6 +14,9 @@ export interface Task {
   title: string;
   description: string;
   isFavorite: boolean;
+  type: string;
+  dueDate: string;
+  createdAt: string;
 }
 export interface AppState {
   tasks: Task[];
@@ -52,6 +56,16 @@ const TaskReducer = (state = initialState, action: any): AppState => {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== taskId),
       };
+
+    case UPDATE_TASK_DUE_DATE:
+      const { id: cardId, dueDate } = action.payload;
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id === cardId ? { ...task, dueDate } : task
+        ),
+      };
+
     default:
       return state;
   }

@@ -8,6 +8,7 @@ import Input from "../Input";
 import Textarea from "../Textarea";
 import Button from "../Button";
 import Checkbox from "../CheckBox";
+import DatePicker from "../DatePicker";
 
 type ModalTaskProps = {
   onClose: () => void;
@@ -17,6 +18,12 @@ const ModalTask = ({ onClose }: ModalTaskProps) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  const [dueDate, setDueDate] = useState<string>(() => {
+    const nextDayDate = new Date();
+    nextDayDate.setDate(nextDayDate.getDate() + 1);
+    nextDayDate.setUTCHours(0, 0, 0, 0);
+    return nextDayDate.toISOString();
+  });
 
   const dispatch = useDispatch();
 
@@ -29,7 +36,15 @@ const ModalTask = ({ onClose }: ModalTaskProps) => {
   };
 
   const onAddHandler = () => {
-    dispatch(addTask({ title, description, isFavorite }));
+    dispatch(
+      addTask({
+        title,
+        description,
+        createdAt: new Date().toISOString(),
+        dueDate: dueDate,
+        isFavorite,
+      })
+    );
     onClose();
   };
 
@@ -45,6 +60,7 @@ const ModalTask = ({ onClose }: ModalTaskProps) => {
         label="Title"
         placeholder="e.g., study for the test"
       />
+      <DatePicker date={dueDate} onChange={setDueDate} label="Date" />
       <Textarea
         value={description}
         onChange={onDescriptionChange}
