@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectTasks } from "../../redux/Task/TaskSelector";
@@ -8,20 +8,19 @@ import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import TaskCards from "../../components/TaskCards";
 import ModalTask from "../../components/ModalTask";
+import { ModalContext } from "../../context";
 
 const Homepage = () => {
   const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const modalContext = useContext(ModalContext);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  if (!modalContext) {
+    return null;
+  }
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const { isOpen } = modalContext;
 
   const deleteTask = (id: number) => {
     dispatch(removeTask(id));
@@ -30,13 +29,13 @@ const Homepage = () => {
   return (
     <div className="flex h-[100vh]">
       <div className="w-[450px] ">
-        <Sidebar onAdd={openModal} />
+        <Sidebar />
       </div>
       <div className="flex flex-col w-[100%] bg-modalBG">
-        <Header onAdd={openModal} />
+        <Header />
         <TaskCards onRemoveTask={deleteTask} tasks={tasks} />
       </div>
-      {isModalOpen && <ModalTask onClose={closeModal} />}
+      {isOpen && <ModalTask />}
     </div>
   );
 };

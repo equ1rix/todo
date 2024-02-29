@@ -1,18 +1,13 @@
-import React, { useState } from "react";
-
-import { mock } from "../../Helpers";
+import React, { useContext, useState } from "react";
 
 import Button from "../Button";
 import SidebarElement from "../SidebarElement";
+import { ModalContext, ModalContextProps } from "../../context/index";
 
 type Element = {
   text: string;
   isActive: boolean;
   id: number;
-};
-
-type SidebarProps = {
-  onAdd: () => void;
 };
 
 const elements: Element[] = [
@@ -28,17 +23,19 @@ const elements: Element[] = [
   },
 ];
 
-const Sidebar = ({ onAdd = mock }: SidebarProps) => {
+const Sidebar = () => {
   const [activeElement, setActiveElement] = useState<number>(elements[0].id);
 
   const onElementClickHandler = (id: number) => setActiveElement(id);
+
+  const { openModal } = useContext(ModalContext) as ModalContextProps;
 
   return (
     <div className="flex flex-col bg-defaultBG h-[100%] min-w-[200px] w-[100%]">
       <h3 className="text-center text-text-light font-bold py-2 px-4 text-xl">
         TO-DO LIST
       </h3>
-      <Button onClick={onAdd} text="Add new Task" />
+      <Button onClick={openModal} text="Add new Task" />
       <ul className="mt-[30px]">
         {elements.map((element: Element) => (
           <SidebarElement

@@ -1,25 +1,21 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { mock } from "../../Helpers";
 import { addTask } from "../../redux/Task/TaskActions";
 
 import Modal from "../Modal";
 import Input from "../Input";
 import Textarea from "../Textarea";
 import Button from "../Button";
+import { ModalContext, ModalContextProps } from "../../context";
 
-type ModalProps = {
-  onClose: () => void;
-  title?: string;
-  description?: string;
-};
-
-const ModalTask = ({ onClose = mock }: ModalProps) => {
+const ModalTask = () => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
   const dispatch = useDispatch();
+
+  const { closeModal } = useContext(ModalContext) as ModalContextProps;
 
   const onTitleChange = (value: string) => {
     setTitle(value);
@@ -31,11 +27,11 @@ const ModalTask = ({ onClose = mock }: ModalProps) => {
 
   const onAddHandler = () => {
     dispatch(addTask({ title, description }));
-    onClose();
+    closeModal();
   };
 
   return (
-    <Modal onClose={onClose} title="Add a task">
+    <Modal onClose={closeModal} title="Add a task">
       <Input
         value={title}
         onChange={onTitleChange}
