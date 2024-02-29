@@ -36,7 +36,7 @@ export const ModalContextProvider = ({
   return (
     <ModalContext.Provider value={contextValue}>
       {children}
-      {isOpen && <ModalTask />}
+      {isOpen && <ModalTask onClose={closeModal} />}
     </ModalContext.Provider>
   );
 };
