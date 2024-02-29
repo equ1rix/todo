@@ -13,13 +13,13 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <ModalContextProvider>
-    <Provider store={store}>
-      <React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
+      <ModalContextProvider>
         <App />
-      </React.StrictMode>
-    </Provider>
-  </ModalContextProvider>
+      </ModalContextProvider>
+    </React.StrictMode>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

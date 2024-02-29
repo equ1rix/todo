@@ -1,4 +1,6 @@
-import { createContext, ReactNode, useState } from "react";
+import { ReactNode, createContext, useState } from "react";
+
+import ModalTask from "../components/ModalTask";
 
 export type ModalContextProps = {
   isOpen: boolean;
@@ -6,12 +8,11 @@ export type ModalContextProps = {
   closeModal: () => void;
 };
 
-const ModalContext = createContext<ModalContextProps | undefined>(undefined);
-
 type ModalContextProviderProps = {
   children: ReactNode;
-  defaultValue?: ModalContextProps;
 };
+
+const ModalContext = createContext<ModalContextProps | undefined>(undefined);
 
 export const ModalContextProvider = ({
   children,
@@ -35,6 +36,7 @@ export const ModalContextProvider = ({
   return (
     <ModalContext.Provider value={contextValue}>
       {children}
+      {isOpen && <ModalTask />}
     </ModalContext.Provider>
   );
 };
