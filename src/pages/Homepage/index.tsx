@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectTasks } from "../../redux/Task/TaskSelector";
+import { setFavorite } from "../../redux/Task/TaskActions";
 import { removeTask } from "../../redux/Task/TaskActions";
 
 import Sidebar from "../../components/Sidebar";
@@ -11,6 +12,10 @@ import TaskCards from "../../components/TaskCards";
 const Homepage = () => {
   const dispatch = useDispatch();
   const tasks = useSelector(selectTasks);
+
+  const updateFavoriteStatus = (id: number) => {
+    dispatch(setFavorite(id));
+  };
 
   const deleteTask = (id: number) => {
     dispatch(removeTask(id));
@@ -23,7 +28,11 @@ const Homepage = () => {
       </div>
       <div className="flex flex-col w-[100%] bg-modalBG">
         <Header />
-        <TaskCards onRemoveTask={deleteTask} tasks={tasks} />
+        <TaskCards
+          tasks={tasks}
+          setFavoriteTask={updateFavoriteStatus}
+          onRemoveTask={deleteTask}
+        />
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import Modal from "../Modal";
 import Input from "../Input";
 import Textarea from "../Textarea";
 import Button from "../Button";
+import Checkbox from "../CheckBox";
 
 type ModalTaskProps = {
   onClose: () => void;
@@ -15,6 +16,7 @@ type ModalTaskProps = {
 const ModalTask = ({ onClose }: ModalTaskProps) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
@@ -27,8 +29,12 @@ const ModalTask = ({ onClose }: ModalTaskProps) => {
   };
 
   const onAddHandler = () => {
-    dispatch(addTask({ title, description }));
+    dispatch(addTask({ title, description, isFavorite }));
     onClose();
+  };
+
+  const onCheckboxChange = (checked: boolean) => {
+    setIsFavorite(checked);
   };
 
   return (
@@ -44,6 +50,11 @@ const ModalTask = ({ onClose }: ModalTaskProps) => {
         onChange={onDescriptionChange}
         label="Description (optional)"
         placeholder="e.g., study for the test"
+      />
+      <Checkbox
+        label="Mark as favorite"
+        value={isFavorite}
+        onChange={onCheckboxChange}
       />
       <Button text="Add a task" onClick={onAddHandler} />
     </Modal>

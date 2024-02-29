@@ -1,7 +1,5 @@
 import React, { ReactNode } from "react";
 
-import { DeleteIcon } from "./Icons";
-
 type IconButtonProps = {
   onClick: () => void;
   children: ReactNode;
