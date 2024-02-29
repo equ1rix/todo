@@ -7,3 +7,9 @@ export const getFormattedDate = (date = new Date()) => {
   const day = currentDate.getDate();
   return `${year}, ${month} ${day}`;
 };
+
+export const calculateDueDateApproaching = (dueDate: string) => {
+  const approachingThreshold = 24 * 60 * 60 * 1000;
+  const timeDifference = new Date(dueDate).getTime() - new Date().getTime();
+  return timeDifference <= approachingThreshold;
+};

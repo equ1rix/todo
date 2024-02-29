@@ -1,6 +1,6 @@
 import React from "react";
 
-import { mock } from "../../Helpers";
+import { calculateDueDateApproaching, mock } from "../../Helpers";
 import { Task } from "../../redux/Task/TaskReducer";
 
 import Card from "../Card";
@@ -16,12 +16,6 @@ const TaskCards = ({
   onRemoveTask = mock,
   onDueDateChange = mock,
 }: TaskCardsProps) => {
-  const calculateDueDateApproaching = (dueDate: string) => {
-    const approachingThreshold = 24 * 60 * 60 * 1000;
-    const timeDifference = new Date(dueDate).getTime() - new Date().getTime();
-    return timeDifference <= approachingThreshold;
-  };
-
   return (
     <div className="grid grid-cols-5 gap-4 p-4 h-full">
       {tasks &&
