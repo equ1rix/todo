@@ -1,8 +1,12 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 
 import Button from "../Button";
 import SidebarElement from "../SidebarElement";
 import { ModalContext, ModalContextProps } from "../../context/index";
+
+type SidebarProps = {
+  onChange: (id: number, text: string) => void;
+};
 
 type Element = {
   text: string;
@@ -18,25 +22,37 @@ const elements: Element[] = [
   },
   {
     id: 1,
+    text: "This week tasks",
+    isActive: false,
+  },
+  {
+    id: 2,
     text: "All tasks",
+    isActive: false,
+  },
+  {
+    id: 3,
+    text: "Favorite tasks",
     isActive: false,
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ onChange }: SidebarProps) => {
   const [activeElement, setActiveElement] = useState<number>(elements[0].id);
-
-  const onElementClickHandler = (id: number) => setActiveElement(id);
+  const onElementClickHandler = (id: number) => {
+    setActiveElement(id);
+    onChange(id, elements.find((element) => element.id === id)?.text || "");
+  };
 
   const { openModal } = useContext(ModalContext) as ModalContextProps;
 
   return (
     <div className="flex flex-col bg-defaultBG h-[100%] min-w-[200px] w-[100%]">
-      <h3 className="text-center text-text-light font-bold py-2 px-4 text-xl">
+      <h3 className="text-center text-text-light font-bold py-7 px-4 text-xl">
         TO-DO LIST
       </h3>
       <Button onClick={openModal} text="Add new Task" />
-      <ul className="mt-[30px]">
+      <ul className="mt-[40px]">
         {elements.map((element: Element) => (
           <SidebarElement
             key={element.id}
