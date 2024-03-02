@@ -1,17 +1,12 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import {
-  favoriteTasksSelector,
-  selectTasks,
-  todaysTasksSelector,
-  weekTasksSelector,
-} from "../../redux/Task/TaskSelector";
 import {
   removeTask,
   updateTaskDueDate,
   setFavorite,
 } from "../../redux/Task/TaskActions";
+import { Element } from "../../components/Sidebar";
 
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
@@ -19,31 +14,13 @@ import TaskCards from "../../components/TaskCards";
 import TasksBar from "../../components/TasksBar";
 
 const Homepage = () => {
-  const [selectedFilter, setSelectedFilter] = useState<number>(0);
-  const [selectedName, setSelectedName] = useState<string>("Today`s tasks");
+  const [selectedFilter, setSelectedFilter] = useState<Element>({
+    id: 0,
+    text: "Today's tasks",
+    isActive: true,
+    select: [],
+  });
   const dispatch = useDispatch();
-
-  const allTasks = useSelector(selectTasks);
-  const favoriteTasks = useSelector(favoriteTasksSelector);
-  const weekTasks = useSelector(weekTasksSelector);
-  const todaysTasks = useSelector(todaysTasksSelector);
-
-  const tasksToRender = (() => {
-    switch (selectedFilter) {
-      case 0:
-        return todaysTasks;
-      case 1:
-        return weekTasks;
-      case 2:
-        return allTasks;
-      case 3:
-        return favoriteTasks;
-      default:
-        return [];
-    }
-  })();
-
-  const quantityTasks = tasksToRender.length;
 
   const updateFavoriteStatus = (id: number) => {
     dispatch(setFavorite(id));
@@ -57,21 +34,23 @@ const Homepage = () => {
     dispatch(updateTaskDueDate(id, newDate));
   };
 
-  const handleFilterChange = (id: number, title: string) => {
-    setSelectedFilter(id);
-    setSelectedName(title);
+  const handleFilterChange = (filter: Element) => {
+    setSelectedFilter(filter);
   };
 
   return (
     <div className="flex h-[100vh]">
       <div className="w-[450px] ">
-        <Sidebar onChange={handleFilterChange} />
+        <Sidebar onFilterClick={handleFilterChange} />
       </div>
       <div className="flex flex-col w-[100%] bg-modalBG">
         <Header />
-        <TasksBar title={selectedName} quantity={quantityTasks} />
+        <TasksBar
+          title={selectedFilter.text}
+          quantity={selectedFilter.select.length}
+        />
         <TaskCards
-          tasks={tasksToRender}
+          tasks={selectedFilter.select}
           setFavoriteTask={updateFavoriteStatus}
           onRemoveTask={deleteTask}
           onDueDateChange={onDueDateChange}

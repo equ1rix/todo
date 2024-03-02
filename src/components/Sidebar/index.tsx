@@ -1,48 +1,68 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import { ModalContext, ModalContextProps } from "../../context/index";
+import { mock } from "../../Helpers";
+
+import { Task } from "../../redux/Task/TaskReducer";
+import { useSelector } from "react-redux";
+import {
+  favoriteTasksSelector,
+  selectTasks,
+  todaysTasksSelector,
+  weekTasksSelector,
+} from "../../redux/Task/TaskSelector";
 
 import Button from "../Button";
 import SidebarElement from "../SidebarElement";
-import { ModalContext, ModalContextProps } from "../../context/index";
 
 type SidebarProps = {
-  onChange: (id: number, text: string) => void;
+  onFilterClick: (filter: Element) => void;
 };
 
-type Element = {
+export interface Element {
   text: string;
   isActive: boolean;
   id: number;
-};
+  select: Task[];
+}
 
-const elements: Element[] = [
-  {
-    id: 0,
-    text: "Today's tasks",
-    isActive: true,
-  },
-  {
-    id: 1,
-    text: "This week tasks",
-    isActive: false,
-  },
-  {
-    id: 2,
-    text: "All tasks",
-    isActive: false,
-  },
-  {
-    id: 3,
-    text: "Favorite tasks",
-    isActive: false,
-  },
-];
+const Sidebar = ({ onFilterClick = mock }: SidebarProps) => {
+  const elements: Element[] = [
+    {
+      id: 0,
+      text: "Today's tasks",
+      isActive: true,
+      select: useSelector(todaysTasksSelector),
+    },
+    {
+      id: 1,
+      text: "This week tasks",
+      isActive: false,
+      select: useSelector(weekTasksSelector),
+    },
+    {
+      id: 2,
+      text: "All tasks",
+      isActive: false,
+      select: useSelector(selectTasks),
+    },
+    {
+      id: 3,
+      text: "Favorite tasks",
+      isActive: false,
+      select: useSelector(favoriteTasksSelector),
+    },
+  ];
 
-const Sidebar = ({ onChange }: SidebarProps) => {
   const [activeElement, setActiveElement] = useState<number>(elements[0].id);
+
   const onElementClickHandler = (id: number) => {
     setActiveElement(id);
-    onChange(id, elements.find((element) => element.id === id)?.text || "");
   };
+
+  useEffect(() => {
+    onFilterClick(elements[activeElement]);
+  }, [activeElement, elements]);
 
   const { openModal } = useContext(ModalContext) as ModalContextProps;
 
