@@ -1,3 +1,4 @@
+import { defaultTasks } from "../../Helpers/mock";
 import {
   ADD_TASK,
   REDUCER_NAME,
@@ -22,7 +23,7 @@ export interface AppState {
   tasks: Task[];
 }
 const initialState: AppState = {
-  tasks: [],
+  tasks: defaultTasks,
 };
 
 const TaskReducer = (state = initialState, action: any): AppState => {

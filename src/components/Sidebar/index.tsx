@@ -1,50 +1,41 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
+
+import { ModalContext, ModalContextProps } from "../../context/index";
+import { mock, filters, Filter } from "../../Helpers";
 
 import Button from "../Button";
 import SidebarElement from "../SidebarElement";
-import { ModalContext, ModalContextProps } from "../../context/index";
 
-type Element = {
-  text: string;
-  isActive: boolean;
-  id: number;
+type SidebarProps = {
+  onFilterClick: (filter: Filter) => void;
+  activeFilter: Filter;
 };
 
-const elements: Element[] = [
-  {
-    id: 0,
-    text: "Today's tasks",
-    isActive: true,
-  },
-  {
-    id: 1,
-    text: "All tasks",
-    isActive: false,
-  },
-];
-
-const Sidebar = () => {
-  const [activeElement, setActiveElement] = useState<number>(elements[0].id);
-
-  const onElementClickHandler = (id: number) => setActiveElement(id);
+const Sidebar = ({
+  onFilterClick = mock,
+  activeFilter = filters[0],
+}: SidebarProps) => {
+  const onFilterClickHandler = (filter: Filter) => {
+    onFilterClick(filter);
+  };
 
   const { openModal } = useContext(ModalContext) as ModalContextProps;
 
   return (
     <div className="flex flex-col bg-defaultBG h-[100%] min-w-[200px] w-[100%]">
-      <h3 className="text-center text-text-light font-bold py-2 px-4 text-xl">
+      <h3 className="text-center text-text-light font-bold py-7 px-4 text-xl">
         TO-DO LIST
       </h3>
       <Button onClick={openModal} text="Add new Task" />
-      <ul className="mt-[30px]">
-        {elements.map((element: Element) => (
+      <ul className="mt-[40px]">
+        {filters.map((filter: Filter) => (
           <SidebarElement
-            key={element.id}
-            text={element.text}
+            key={filter.id}
+            text={filter.text}
             onClick={() => {
-              onElementClickHandler(element.id);
+              onFilterClickHandler(filter);
             }}
-            isActive={element.id === activeElement}
+            isActive={filter.id === activeFilter.id}
           />
         ))}
         ;
