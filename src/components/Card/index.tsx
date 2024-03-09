@@ -4,6 +4,7 @@ import { mock } from "../../Helpers";
 
 import { DeleteButton, FavoriteButton } from "../IconButton";
 import DatePicker from "../DatePicker";
+import { Task } from "../../redux/Task/TaskReducer";
 
 export const CARD_TYPE = {
   PRIMARY: "PRIMARY",
@@ -31,6 +32,7 @@ type CardProps = {
   isOutdated: boolean;
   onSetFavorite: () => void;
   isFavorite?: boolean;
+  onDetails: () => void;
 };
 
 const Card = ({
@@ -44,6 +46,7 @@ const Card = ({
   dueDate = new Date().toDateString(),
   id,
   isOutdated = false,
+  onDetails = mock,
 }: CardProps) => {
   const cardStyle = CARD_STYLE[type];
 
@@ -60,7 +63,9 @@ const Card = ({
   return (
     <div className={cardStyle}>
       <div className="min-h-[190px]">
-        <h2 className={titleClass}>{title}</h2>
+        <h2 onClick={() => onDetails()} className={titleClass}>
+          {title}
+        </h2>
         <p>{description}</p>
       </div>
       <div>

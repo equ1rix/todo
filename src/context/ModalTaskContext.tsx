@@ -3,7 +3,7 @@ import { ReactNode, createContext, useState } from "react";
 import ModalTask from "../components/ModalTask";
 
 export type ModalContextProps = {
-  isOpen: boolean;
+  isOpenModal: boolean;
   openModal: () => void;
   closeModal: () => void;
 };
@@ -17,18 +17,18 @@ const ModalContext = createContext<ModalContextProps | undefined>(undefined);
 export const ModalContextProvider = ({
   children,
 }: ModalContextProviderProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const openModal = () => {
-    setIsOpen(true);
+    setIsOpenModal(true);
   };
 
   const closeModal = () => {
-    setIsOpen(false);
+    setIsOpenModal(false);
   };
 
   const contextValue: ModalContextProps = {
-    isOpen,
+    isOpenModal,
     openModal,
     closeModal,
   };
@@ -36,7 +36,7 @@ export const ModalContextProvider = ({
   return (
     <ModalContext.Provider value={contextValue}>
       {children}
-      {isOpen && <ModalTask onClose={closeModal} />}
+      {isOpenModal && <ModalTask onClose={closeModal} />}
     </ModalContext.Provider>
   );
 };

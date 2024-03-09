@@ -1,6 +1,9 @@
 import { useContext } from "react";
 
-import { ModalContext, ModalContextProps } from "../../context/index";
+import {
+  ModalContext,
+  ModalContextProps,
+} from "../../context/ModalTaskContext";
 import { mock, filters, Filter } from "../../Helpers";
 
 import Button from "../Button";

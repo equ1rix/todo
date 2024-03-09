@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { calculateDueDateApproaching, mock } from "../../Helpers";
 import { Task } from "../../redux/Task/TaskReducer";
 
 import Card from "../Card";
+import {
+  ModalDetailsContext,
+  ModalDetailsContextProps,
+} from "../../context/ModalTaskDetailsContext";
 
 type TaskCardsProps = {
   tasks: Task[];
@@ -18,6 +22,10 @@ const TaskCards = ({
   onDueDateChange = mock,
   setFavoriteTask = mock,
 }: TaskCardsProps) => {
+  const { openModalDetails } = useContext(
+    ModalDetailsContext
+  ) as ModalDetailsContextProps;
+
   return (
     <div className="grid grid-cols-5 gap-4 p-4 h-full">
       {tasks &&
@@ -29,6 +37,7 @@ const TaskCards = ({
               isOutdated={calculateDueDateApproaching(card.dueDate)}
               onChangeDueDate={onDueDateChange}
               onSetFavorite={() => setFavoriteTask(card.id)}
+              onDetails={() => openModalDetails([card])}
             />
           </div>
         ))}

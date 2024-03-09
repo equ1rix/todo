@@ -5,6 +5,7 @@ import {
   SET_FAVORITE,
   REMOVE_TASK,
   UPDATE_TASK_DUE_DATE,
+  UPDATE_TASK_DETAILS,
 } from "./TaskActions";
 import { v4 as uuidv4 } from "uuid";
 
@@ -64,6 +65,15 @@ const TaskReducer = (state = initialState, action: any): AppState => {
         ...state,
         tasks: state.tasks.map((task) =>
           task.id === cardId ? { ...task, dueDate } : task
+        ),
+      };
+
+    case UPDATE_TASK_DETAILS:
+      const { id: updatedTaskId, ...updatedDetails } = action.payload;
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id === updatedTaskId ? { ...task, ...updatedDetails } : task
         ),
       };
 

@@ -7,7 +7,8 @@ import store from "./redux/store";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ModalContextProvider } from "./context";
+import { ModalContextProvider } from "./context/ModalTaskContext";
+import { ModalDetailsContextProvider } from "./context/ModalTaskDetailsContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,9 +16,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-      <ModalContextProvider>
-        <App />
-      </ModalContextProvider>
+      <ModalDetailsContextProvider>
+        <ModalContextProvider>
+          <App />
+        </ModalContextProvider>
+      </ModalDetailsContextProvider>
     </React.StrictMode>
   </Provider>
 );
