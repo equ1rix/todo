@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   removeTask,
   updateTaskDueDate,
   setFavorite,
 } from "../../redux/Task/TaskActions";
+import { Filter, filters } from "../../Helpers";
+import { selectTasks } from "../../redux/Task/TaskSelector";
+import { Task } from "../../redux/Task/TaskReducer";
 
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import TaskCards from "../../components/TaskCards";
 import TasksBar from "../../components/TasksBar";
-import { Filter, filters } from "../../Helpers";
-import { useSelector } from "react-redux";
-import { selectTasks } from "../../redux/Task/TaskSelector";
-import { Task } from "../../redux/Task/TaskReducer";
 
 const Homepage = () => {
   const [selectedFilter, setSelectedFilter] = useState<Filter>(filters[0]);
   const [tasks, setTasks] = useState<Task[]>(useSelector(selectTasks));
+  const [searchQuery, setSearchQuery] = useState("");
+
   const dispatch = useDispatch();
 
   const updateFavoriteStatus = (id: number) => {
@@ -52,13 +53,14 @@ const Homepage = () => {
         />
       </div>
       <div className="flex flex-col w-[100%] bg-modalBG">
-        <Header />
+        <Header onChange={setSearchQuery} value={searchQuery} />
         <TasksBar title={selectedFilter.text} quantity={tasks.length} />
         <TaskCards
           tasks={tasks}
           setFavoriteTask={updateFavoriteStatus}
           onRemoveTask={deleteTask}
           onDueDateChange={onDueDateChange}
+          searchQuery={searchQuery}
         />
       </div>
     </div>

@@ -10,6 +10,7 @@ type TaskCardsProps = {
   onRemoveTask: (index: number) => void;
   onDueDateChange: (id: number, newDate: string) => void;
   setFavoriteTask: (id: number) => void;
+  searchQuery: string;
 };
 
 const TaskCards = ({
@@ -17,11 +18,17 @@ const TaskCards = ({
   onRemoveTask = mock,
   onDueDateChange = mock,
   setFavoriteTask = mock,
+  searchQuery,
 }: TaskCardsProps) => {
+  const filteredTasks = tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      task.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className="grid grid-cols-5 gap-4 p-4 h-full">
-      {tasks &&
-        tasks.map((card: Task) => (
+      {filteredTasks &&
+        filteredTasks.map((card: Task) => (
           <div key={card.id}>
             <Card
               {...card}
