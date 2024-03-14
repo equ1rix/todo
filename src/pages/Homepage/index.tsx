@@ -18,7 +18,7 @@ import TasksBar from "../../components/TasksBar";
 const Homepage = () => {
   const [selectedFilter, setSelectedFilter] = useState<Filter>(filters[0]);
   const [tasks, setTasks] = useState<Task[]>(useSelector(selectTasks));
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const dispatch = useDispatch();
 
@@ -44,6 +44,12 @@ const Homepage = () => {
     setTasks(filteredTasks);
   }, [filteredTasks]);
 
+  const tasksToShow = tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      task.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="flex h-[100vh]">
       <div className="w-[450px] ">
@@ -56,11 +62,10 @@ const Homepage = () => {
         <Header onChange={setSearchQuery} value={searchQuery} />
         <TasksBar title={selectedFilter.text} quantity={tasks.length} />
         <TaskCards
-          tasks={tasks}
+          tasks={tasksToShow}
           setFavoriteTask={updateFavoriteStatus}
           onRemoveTask={deleteTask}
           onDueDateChange={onDueDateChange}
-          searchQuery={searchQuery}
         />
       </div>
     </div>
