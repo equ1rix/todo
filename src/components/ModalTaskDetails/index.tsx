@@ -1,19 +1,20 @@
 import { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
 
-import Modal from "../Modal";
 import { mock } from "../../Helpers";
+
+import { updateTaskDetails } from "../../redux/Task/TaskActions";
 import {
   ModalDetailsContext,
   ModalDetailsContextProps,
 } from "../../context/ModalTaskDetailsContext";
+import Modal from "../Modal";
 import Label from "../Label";
 import Input from "../Input";
 import Textarea from "../Textarea";
 import DatePicker from "../DatePicker";
 import Checkbox from "../CheckBox";
 import Button from "../Button";
-import { useDispatch } from "react-redux";
-import { updateTaskDetails } from "../../redux/Task/TaskActions";
 
 type ModalTaskDetailsProps = {
   onClose: () => void;
@@ -24,14 +25,12 @@ const ModalTaskDetails = ({ onClose = mock }: ModalTaskDetailsProps) => {
     ModalDetailsContext
   ) as ModalDetailsContextProps;
 
-  const [title, setTitle] = useState<string>(taskDetails[0].title);
+  const [title, setTitle] = useState<string>(taskDetails.title);
   const [description, setDescription] = useState<string>(
-    taskDetails[0].description
+    taskDetails.description
   );
-  const [isFavorite, setIsFavorite] = useState<boolean>(
-    taskDetails[0].isFavorite
-  );
-  const [dueDate, setDueDate] = useState<string>(taskDetails[0].dueDate);
+  const [isFavorite, setIsFavorite] = useState<boolean>(taskDetails.isFavorite);
+  const [dueDate, setDueDate] = useState<string>(taskDetails.dueDate);
 
   const dispatch = useDispatch();
 
@@ -50,19 +49,19 @@ const ModalTaskDetails = ({ onClose = mock }: ModalTaskDetailsProps) => {
   const onUpdate = () => {
     dispatch(
       updateTaskDetails(
-        taskDetails[0].id,
+        taskDetails.id,
         title,
         description,
         isFavorite,
         dueDate,
-        taskDetails[0].createdAt
+        taskDetails.createdAt
       )
     );
     onClose();
   };
 
-  const createdAtDate = taskDetails[0].createdAt.split("T")[0];
-  const createdAtTime = taskDetails[0].createdAt.split("T")[1].split(".")[0];
+  const createdAtDate = taskDetails.createdAt.split("T")[0];
+  const createdAtTime = taskDetails.createdAt.split("T")[1].split(".")[0];
 
   return (
     <Modal onClose={onClose} title="Task details">

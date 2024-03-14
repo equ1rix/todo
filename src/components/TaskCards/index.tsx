@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { calculateDueDateApproaching, mock } from "../../Helpers";
 import { Task } from "../../redux/Task/TaskReducer";
@@ -37,7 +37,7 @@ const TaskCards = ({
               isOutdated={calculateDueDateApproaching(card.dueDate)}
               onChangeDueDate={onDueDateChange}
               onSetFavorite={() => setFavoriteTask(card.id)}
-              onDetails={() => openModalDetails([card])}
+              onDetails={() => openModalDetails(card)}
             />
           </div>
         ))}

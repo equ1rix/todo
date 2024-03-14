@@ -1,10 +1,7 @@
-import React from "react";
-
 import { mock } from "../../Helpers";
 
 import { DeleteButton, FavoriteButton } from "../IconButton";
 import DatePicker from "../DatePicker";
-import { Task } from "../../redux/Task/TaskReducer";
 
 export const CARD_TYPE = {
   PRIMARY: "PRIMARY",
@@ -63,7 +60,7 @@ const Card = ({
   return (
     <div className={cardStyle}>
       <div className="min-h-[190px]">
-        <h2 onClick={() => onDetails()} className={titleClass}>
+        <h2 onClick={onDetails} className={titleClass}>
           {title}
         </h2>
         <p>{description}</p>

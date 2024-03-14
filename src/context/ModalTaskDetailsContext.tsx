@@ -6,9 +6,9 @@ import { defaultTasks } from "../Helpers/mock";
 
 export type ModalDetailsContextProps = {
   isOpenModalDetails: boolean;
-  openModalDetails: (task: Task[]) => void;
+  openModalDetails: (task: Task) => void;
   closeModalDetails: () => void;
-  taskDetails: Task[];
+  taskDetails: Task;
 };
 
 type ModalContextProviderProps = {
@@ -23,9 +23,9 @@ export const ModalDetailsContextProvider = ({
   children,
 }: ModalContextProviderProps) => {
   const [isOpenModalDetails, setIsOpenModalDetails] = useState<boolean>(false);
-  const [taskDetails, setTaskDetails] = useState<Task[]>(defaultTasks);
+  const [taskDetails, setTaskDetails] = useState<Task>(defaultTasks[0]);
 
-  const openModalDetails = (task: Task[]) => {
+  const openModalDetails = (task: Task) => {
     setIsOpenModalDetails(true);
     setTaskDetails(task);
   };
