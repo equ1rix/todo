@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { mock } from "../../Helpers";
 
 import Label from "../Label";
 
 type InputProps = {
-  placeholder: string;
-  label: string;
+  placeholder?: string;
+  label?: string;
   value: string;
   onChange: (value: string) => void;
 };
