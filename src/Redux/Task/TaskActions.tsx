@@ -46,14 +46,19 @@ export const updateTaskDueDate = (id: number, dueDate: string) => ({
   },
 });
 
-export const updateTaskDetails = (
-  id: number,
-  title: string,
-  description: string,
-  isFavorite: boolean,
-  dueDate: string,
-  createdAt: string
-) => ({
+export const updateTaskDetails = ({
+  id,
+  title,
+  description,
+  isFavorite,
+  dueDate,
+}: {
+  id: number;
+  title: string;
+  description: string;
+  isFavorite: boolean;
+  dueDate: string;
+}) => ({
   type: UPDATE_TASK_DETAILS,
   payload: {
     id,
@@ -61,6 +66,5 @@ export const updateTaskDetails = (
     description,
     isFavorite,
     dueDate,
-    createdAt,
   },
 });

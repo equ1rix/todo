@@ -48,14 +48,13 @@ const ModalTaskDetails = ({ onClose = mock }: ModalTaskDetailsProps) => {
 
   const onUpdate = () => {
     dispatch(
-      updateTaskDetails(
-        taskDetails.id,
+      updateTaskDetails({
+        id: taskDetails.id,
         title,
         description,
         isFavorite,
         dueDate,
-        taskDetails.createdAt
-      )
+      })
     );
     onClose();
   };
