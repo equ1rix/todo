@@ -6,7 +6,7 @@ import Label from "../Label";
 
 type InputProps = {
   placeholder?: string;
-  label: string;
+  label?: string;
   value: string;
   onChange: (value: string) => void;
 };
