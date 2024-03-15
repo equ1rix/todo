@@ -9,7 +9,7 @@ import Input from "../Input";
 type HeaderProps = {
   date?: string;
   value: string;
-  onChange: (seach: string) => void;
+  onChange: (search: string) => void;
 };
 
 const Header = ({
@@ -19,8 +19,8 @@ const Header = ({
 }: HeaderProps) => {
   const { openModal } = useContext(ModalContext) as ModalContextProps;
 
-  const handleChange = (seach: string) => {
-    onChange(seach);
+  const handleSearch = (search: string) => {
+    onChange(search);
   };
 
   return (
@@ -29,7 +29,7 @@ const Header = ({
         <Input
           placeholder="Search task"
           value={value}
-          onChange={handleChange}
+          onChange={handleSearch}
         />
       </div>
       <div className="text-text-light py-2 px-4 m-auto">{date}</div>
