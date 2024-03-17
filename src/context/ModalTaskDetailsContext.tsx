@@ -1,12 +1,12 @@
 import { ReactNode, createContext, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import ModalTaskDetails from "../components/ModalTaskDetails";
 import { Task } from "../redux/Task/TaskReducer";
 import { defaultTasks } from "../Helpers/mock";
 
 export type ModalDetailsContextProps = {
   isOpenModalDetails: boolean;
-  openModalDetails: (task: Task) => void;
+  openModalDetails: (taskId: string) => void;
   closeModalDetails: () => void;
   taskDetails: Task;
 };
@@ -24,13 +24,19 @@ export const ModalDetailsContextProvider = ({
 }: ModalContextProviderProps) => {
   const [isOpenModalDetails, setIsOpenModalDetails] = useState<boolean>(false);
   const [taskDetails, setTaskDetails] = useState<Task>(defaultTasks[0]);
+  const navigate = useNavigate();
 
-  const openModalDetails = (task: Task) => {
+  const openModalDetails = (taskId: string) => {
     setIsOpenModalDetails(true);
-    setTaskDetails(task);
+    navigate(`/homepage?taskId=${taskId}`);
+    const task = defaultTasks.find((task) => task.id === taskId);
+    if (task) {
+      setTaskDetails(task);
+    }
   };
 
   const closeModalDetails = () => {
+    navigate(`/homepage`);
     setIsOpenModalDetails(false);
   };
 

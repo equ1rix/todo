@@ -28,17 +28,17 @@ export const addTask = ({
   },
 });
 
-export const setFavorite = (id: number) => ({
+export const setFavorite = (id: string) => ({
   type: SET_FAVORITE,
   payload: { id },
 });
 
-export const removeTask = (id: number) => ({
+export const removeTask = (id: string) => ({
   type: REMOVE_TASK,
   payload: { id },
 });
 
-export const updateTaskDueDate = (id: number, dueDate: string) => ({
+export const updateTaskDueDate = (id: string, dueDate: string) => ({
   type: UPDATE_TASK_DUE_DATE,
   payload: {
     id,
@@ -53,7 +53,7 @@ export const updateTaskDetails = ({
   isFavorite,
   dueDate,
 }: {
-  id: number;
+  id: string;
   title: string;
   description: string;
   isFavorite: boolean;

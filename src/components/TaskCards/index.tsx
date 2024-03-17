@@ -11,9 +11,9 @@ import {
 
 type TaskCardsProps = {
   tasks: Task[];
-  onRemoveTask: (index: number) => void;
-  onDueDateChange: (id: number, newDate: string) => void;
-  setFavoriteTask: (id: number) => void;
+  onRemoveTask: (index: string) => void;
+  onDueDateChange: (id: string, newDate: string) => void;
+  setFavoriteTask: (id: string) => void;
 };
 
 const TaskCards = ({
@@ -37,7 +37,7 @@ const TaskCards = ({
               isOutdated={calculateDueDateApproaching(card.dueDate)}
               onChangeDueDate={onDueDateChange}
               onSetFavorite={() => setFavoriteTask(card.id)}
-              onDetails={() => openModalDetails(card)}
+              onDetails={() => openModalDetails(card.id)}
             />
           </div>
         ))}

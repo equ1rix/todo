@@ -19,8 +19,8 @@ const CARD_STYLE: Record<CardType, string> = {
 
 type CardProps = {
   onDelete: () => void;
-  onChangeDueDate: (id: number, newDate: string) => void;
-  id: number;
+  onChangeDueDate: (id: string, newDate: string) => void;
+  id: string;
   title: string;
   description: string;
   type: string;
