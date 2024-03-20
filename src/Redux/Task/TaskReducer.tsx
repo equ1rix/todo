@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 export { REDUCER_NAME };
 
 export interface Task {
-  id: number;
+  id: string;
   title: string;
   description: string;
   isFavorite: boolean;

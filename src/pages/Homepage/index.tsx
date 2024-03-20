@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -14,23 +14,40 @@ import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import TaskCards from "../../components/TaskCards";
 import TasksBar from "../../components/TasksBar";
+import { useLocation } from "react-router-dom";
+import {
+  ModalDetailsContext,
+  ModalDetailsContextProps,
+} from "../../context/ModalTaskDetailsContext";
 
 const Homepage = () => {
   const [selectedFilter, setSelectedFilter] = useState<Filter>(filters[0]);
   const [tasks, setTasks] = useState<Task[]>(useSelector(selectTasks));
   const [searchQuery, setSearchQuery] = useState<string>("");
 
+  const { openModalDetails } = useContext(
+    ModalDetailsContext
+  ) as ModalDetailsContextProps;
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const taskId = searchParams.get("taskId");
   const dispatch = useDispatch();
 
-  const updateFavoriteStatus = (id: number) => {
+  useEffect(() => {
+    if (taskId) {
+      openModalDetails(taskId);
+    }
+  }, [taskId]);
+
+  const updateFavoriteStatus = (id: string) => {
     dispatch(setFavorite(id));
   };
 
-  const deleteTask = (id: number) => {
+  const deleteTask = (id: string) => {
     dispatch(removeTask(id));
   };
 
-  const onDueDateChange = (id: number, newDate: string) => {
+  const onDueDateChange = (id: string, newDate: string) => {
     dispatch(updateTaskDueDate(id, newDate));
   };
 

@@ -7,9 +7,10 @@ import { PersistGate } from "redux-persist/integration/react";
 import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
-import App from "./App";
 import { ModalContextProvider } from "./context/ModalTaskContext";
 import { ModalDetailsContextProvider } from "./context/ModalTaskDetailsContext";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Homepage from "./pages/Homepage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -18,11 +19,16 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ModalDetailsContextProvider>
-          <ModalContextProvider>
-            <App />
-          </ModalContextProvider>
-        </ModalDetailsContextProvider>
+        <BrowserRouter>
+          <ModalDetailsContextProvider>
+            <ModalContextProvider>
+              <Routes>
+                <Route path="/" element={<Navigate to="/homepage" />} />
+                <Route path="/homepage" element={<Homepage />} />
+              </Routes>
+            </ModalContextProvider>
+          </ModalDetailsContextProvider>
+        </BrowserRouter>
       </PersistGate>
     </Provider>
   </React.StrictMode>
