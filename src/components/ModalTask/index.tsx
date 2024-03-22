@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { addTask } from "../../redux/Task/TaskActions";
+import { addTask } from "redux/Task/TaskActions";
 
-import Modal from "../Modal";
-import Input from "../Input";
-import Textarea from "../Textarea";
-import Button from "../Button";
-import Checkbox from "../CheckBox";
-import DatePicker from "../DatePicker";
+import Modal from "components/modal";
+import Input from "components/input";
+import Textarea from "components/textarea";
+import Button from "components/button";
+import Checkbox from "components/checkBox";
+import DatePicker from "components/datePicker";
 
 type ModalTaskProps = {
   onClose: () => void;

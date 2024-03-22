@@ -1,7 +1,7 @@
 import React from "react";
 
-import { BlockListIcon } from "./Icons";
-import { mock } from "../../Helpers";
+import { BlockListIcon } from "./icons";
+import { mock } from "helpers";
 
 import IconButton from "./IconButton";
 

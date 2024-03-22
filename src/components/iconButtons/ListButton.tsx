@@ -1,7 +1,7 @@
 import React from "react";
 
-import { ListIcon } from "./Icons";
-import { mock } from "../../Helpers";
+import { ListIcon } from "./icons";
+import { mock } from "helpers";
 
 import IconButton from "./IconButton";
 

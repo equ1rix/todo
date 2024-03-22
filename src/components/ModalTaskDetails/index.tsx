@@ -1,20 +1,20 @@
 import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { mock } from "../../Helpers";
+import { mock } from "helpers";
 
-import { updateTaskDetails } from "../../redux/Task/TaskActions";
+import { updateTaskDetails } from "redux/Task/TaskActions";
 import {
   ModalDetailsContext,
   ModalDetailsContextProps,
-} from "../../context/ModalTaskDetailsContext";
-import Modal from "../Modal";
-import Label from "../Label";
-import Input from "../Input";
-import Textarea from "../Textarea";
-import DatePicker from "../DatePicker";
-import Checkbox from "../CheckBox";
-import Button from "../Button";
+} from "context/ModalTaskDetailsContext";
+import Modal from "components/modal";
+import Label from "components/label";
+import Input from "components/input";
+import Textarea from "components/textarea";
+import DatePicker from "components/datePicker";
+import Checkbox from "components/checkBox";
+import Button from "components/button";
 
 type ModalTaskDetailsProps = {
   onClose: () => void;

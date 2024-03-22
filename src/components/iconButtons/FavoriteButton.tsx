@@ -1,8 +1,8 @@
 import React from "react";
 
-import { mock } from "../../Helpers";
+import { mock } from "helpers";
 
-import { FavoriteIcon } from "./Icons";
+import { FavoriteIcon } from "./icons";
 import IconButton from "./IconButton";
 
 type ButtonProps = {

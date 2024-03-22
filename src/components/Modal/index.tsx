@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 
-import { CloseButton } from "../IconButton";
-import { mock } from "../../Helpers";
+import { CloseButton } from "components/iconButtons";
+import { mock } from "helpers";
 
 type ModalProps = {
   onClose: () => void;

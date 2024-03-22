@@ -1,6 +1,6 @@
 import React from "react";
 
-import { mock } from "../../Helpers";
+import { mock } from "helpers";
 
 type ElementProps = {
   onClick: () => void;

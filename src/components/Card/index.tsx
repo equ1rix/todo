@@ -1,7 +1,7 @@
-import { mock } from "../../Helpers";
+import { mock } from "helpers";
 
-import { DeleteButton, FavoriteButton } from "../IconButton";
-import DatePicker from "../DatePicker";
+import { FavoriteButton, DeleteButton } from "components/iconButtons";
+import DatePicker from "components/datePicker";
 
 export const CARD_TYPE = {
   PRIMARY: "PRIMARY",

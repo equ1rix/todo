@@ -1,13 +1,10 @@
 import { useContext } from "react";
 
-import {
-  ModalContext,
-  ModalContextProps,
-} from "../../context/ModalTaskContext";
-import { mock, filters, Filter } from "../../Helpers";
+import { ModalContext, ModalContextProps } from "context/ModalTaskContext";
+import { mock, filters, Filter } from "helpers";
 
-import Button from "../Button";
-import SidebarElement from "../SidebarElement";
+import Button from "components/button";
+import SidebarElement from "components/sidebarElement";
 
 type SidebarProps = {
   onFilterClick: (filter: Filter) => void;

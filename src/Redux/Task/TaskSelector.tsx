@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 
 import { REDUCER_NAME } from "./TaskActions";
 import { AppState } from "./TaskReducer";
-import { calculateDueDateApproaching } from "../../Helpers";
+import { calculateDueDateApproaching } from "helpers";
 import { isSameWeek, startOfWeek } from "date-fns";
 
 const selectTaskState = (state: { [REDUCER_NAME: string]: AppState }) =>
