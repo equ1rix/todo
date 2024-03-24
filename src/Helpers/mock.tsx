@@ -6,8 +6,8 @@ export const defaultTasks = [
       "Hold a weekly meeting to review the progress of ongoing projects, address any challenges, and adjust plans as necessary.",
     isFavorite: false,
     type: "DEFAULT",
-    dueDate: new Date().toISOString(),
-    createdAt: new Date().toISOString(),
+    dueDate: "2024-06-03T12:00:00.000Z",
+    createdAt: "2024-04-02T12:00:00.000Z",
   },
   {
     id: "1",
@@ -17,7 +17,7 @@ export const defaultTasks = [
     isFavorite: false,
     type: "DEFAULT",
     dueDate: "2024-06-01T12:00:00.000Z",
-    createdAt: new Date().toISOString(),
+    createdAt: "2024-02-07T12:00:00.000Z",
   },
   {
     id: "2",
@@ -27,7 +27,7 @@ export const defaultTasks = [
     isFavorite: true,
     type: "DEFAULT",
     dueDate: "2024-04-17T12:00:00.000Z",
-    createdAt: new Date().toISOString(),
+    createdAt: "2024-02-11T12:00:00.000Z",
   },
   {
     id: "3",
@@ -37,7 +37,7 @@ export const defaultTasks = [
     isFavorite: false,
     type: "DEFAULT",
     dueDate: "2024-05-22T12:00:00.000Z",
-    createdAt: new Date().toISOString(),
+    createdAt: "2023-12-03T12:00:00.000Z",
   },
   {
     id: "4",
@@ -46,8 +46,8 @@ export const defaultTasks = [
       "Check and respond to emails from clients, colleagues, and stakeholders in a timely manner.",
     isFavorite: true,
     type: "DEFAULT",
-    dueDate: new Date().toISOString(),
-    createdAt: new Date().toISOString(),
+    dueDate: "2024-03-30T12:00:00.000Z",
+    createdAt: "2024-02-03T12:00:00.000Z",
   },
   {
     id: "5",
@@ -57,7 +57,7 @@ export const defaultTasks = [
     isFavorite: true,
     type: "DEFAULT",
     dueDate: "2024-03-24T12:00:00.000Z",
-    createdAt: new Date().toISOString(),
+    createdAt: "2023-12-28T12:00:00.000Z",
   },
   {
     id: "6",
@@ -67,7 +67,7 @@ export const defaultTasks = [
     isFavorite: false,
     type: "DEFAULT",
     dueDate: "2024-04-15T12:00:00.000Z",
-    createdAt: new Date().toISOString(),
+    createdAt: "2024-03-016T12:00:00.000Z",
   },
   {
     id: "7",
@@ -77,7 +77,7 @@ export const defaultTasks = [
     isFavorite: false,
     type: "DEFAULT",
     dueDate: "2024-06-02T12:30:00.000Z",
-    createdAt: new Date().toISOString(),
+    createdAt: "2024-05-22T12:00:00.000Z",
   },
   {
     id: "8",
@@ -87,7 +87,7 @@ export const defaultTasks = [
     isFavorite: false,
     type: "DEFAULT",
     dueDate: "2024-05-13T12:00:00.000Z",
-    createdAt: new Date().toISOString(),
+    createdAt: "2024-03-24T12:00:00.000Z",
   },
   {
     id: "9",
@@ -97,7 +97,7 @@ export const defaultTasks = [
     isFavorite: true,
     type: "DEFAULT",
     dueDate: "2024-03-26T12:00:00.000Z",
-    createdAt: new Date().toISOString(),
+    createdAt: "2024-02-03T12:00:00.000Z",
   },
   {
     id: "10",
@@ -107,6 +107,6 @@ export const defaultTasks = [
     isFavorite: false,
     type: "DEFAULT",
     dueDate: "2024-03-29T12:00:00.000Z",
-    createdAt: new Date().toISOString(),
+    createdAt: "2024-01-27T12:00:00.000Z",
   },
 ];
