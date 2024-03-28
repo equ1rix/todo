@@ -30,7 +30,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "predeploy": "yarn build",
+    "predeploy": "npm build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
