@@ -24,7 +24,7 @@ const Header = ({
   };
 
   return (
-    <div className="flex relative justify-between items-center w-[100%] min-h-[80px] p-[5px] bg-modalBG">
+    <div className="flex relative justify-between items-center w-[100%] min-h-[80px] min-w-[260px] p-[5px] bg-modalBG">
       <div className="absolute left-[20px]">
         <Input
           placeholder="Search task"
@@ -33,7 +33,7 @@ const Header = ({
         />
       </div>
       <div className="text-text-light py-2 px-4 m-auto">{date}</div>
-      <div className="absolute right-[20px] top-[20px]">
+      <div className="absolute right-[20px]">
         <Button onClick={openModal} text={"Add new Task"} />
       </div>
     </div>
