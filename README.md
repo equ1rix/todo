@@ -4,6 +4,8 @@ This Todo List application is a minimalist approach to managing your tasks, buil
 
 ## Features
 
+URL: equ1rix.github.io/todo/#/homepage
+
 - **Add Todos**: Quickly add new tasks to your list
 - **Delete Todos**: Remove completed or unnecessary task effortlessly
 - **Add to Favorites**: Keep track of important tasks by adding them your favorites
@@ -35,7 +37,7 @@ This Todo List application is a minimalist approach to managing your tasks, buil
 
 1. Clone this repo:
 
-`git clone (https://github.com/equ1rix/todo)`
+`git clone https://github.com/equ1rix/todo`
 
 2. Change directory
 
