@@ -22,12 +22,14 @@ const Sidebar = ({
   const { openModal } = useContext(ModalContext) as ModalContextProps;
 
   return (
-    <div className="flex flex-col bg-defaultBG h-[100%] min-w-[200px] w-[100%]">
-      <h3 className="text-center text-text-light font-bold py-7 px-4 text-xl">
-        TO-DO LIST
-      </h3>
-      <Button onClick={openModal} text="Add new Task" />
-      <ul className="mt-[40px]">
+    <div className="flex flex-col bg-defaultBG h-[100%] min-w-[200px] w-[100%] ">
+      <div className="flex flex-col min-w-[200px] w-[100%] px-4">
+        <h3 className="text-center text-text-light font-bold py-7 px-4 text-xl">
+          TO-DO LIST
+        </h3>
+        <Button onClick={openModal} text="Add new Task" />
+      </div>
+      <ul className="mt-[40px] w-full">
         {filters.map((filter: Filter) => (
           <SidebarElement
             key={filter.id}
