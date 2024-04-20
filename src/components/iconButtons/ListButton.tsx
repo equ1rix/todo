@@ -1,8 +1,8 @@
 import React from "react";
 
-import { ListIcon } from "./icons";
-import { mock } from "helpers";
+import { mock } from "@helpers";
 
+import { ListIcon } from "./icons";
 import IconButton from "./IconButton";
 
 type ButtonProps = {

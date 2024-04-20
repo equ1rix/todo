@@ -1,4 +1,4 @@
-import { defaultTasks } from "helpers/mock";
+import { defaultTasks } from "@helpers/mock";
 import {
   ADD_TASK,
   REDUCER_NAME,

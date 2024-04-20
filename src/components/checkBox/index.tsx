@@ -1,5 +1,6 @@
 import React from "react";
-import Label from "components/label";
+
+import Label from "@components/label";
 
 type CheckboxProps = {
   label: string;

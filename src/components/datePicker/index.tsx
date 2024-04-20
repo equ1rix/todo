@@ -1,8 +1,8 @@
 import React from "react";
 
-import { mock } from "helpers";
+import { mock } from "@helpers";
 
-import Label from "components/label";
+import Label from "@components/label";
 
 type DatePickerProps = {
   date: string;

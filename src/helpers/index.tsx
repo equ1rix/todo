@@ -1,10 +1,10 @@
-import { AppState, Task } from "redux/Task/TaskReducer";
+import { AppState, Task } from "@redux/Task/TaskReducer";
 import {
   favoriteTasksSelector,
   selectTasks,
   todaysTasksSelector,
   weekTasksSelector,
-} from "redux/Task/TaskSelector";
+} from "@redux/Task/TaskSelector";
 
 export const mock = () => {};
 
