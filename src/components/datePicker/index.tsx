@@ -27,15 +27,6 @@ const DatePicker = ({
     <div className="mt-3 mb-3">
       {label && <Label label={label} />}
       <input
-        style={{
-          height: "1.5em",
-          appearance: "none",
-          backgroundImage: `url()`,
-          backgroundPosition: "right center",
-          backgroundSize: "16px 16px",
-          backgroundRepeat: "no-repeat",
-          paddingRight: "16px",
-        }}
         className={`${fill} bg-inputBG p-2 rounded-lg w-[100%] min-h-[40px]`}
         type="date"
         value={date.split("T")[0]}

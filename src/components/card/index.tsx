@@ -49,8 +49,8 @@ const Card = ({
 
   const titleClass =
     type === "PRIMARY"
-      ? "font-bold text-text-primary"
-      : "font-bold text-text-title";
+      ? "font-bold text-text-primary cursor-pointer"
+      : "font-bold text-text-title cursor-pointer";
 
   const borderColor =
     type === "PRIMARY"
@@ -60,11 +60,7 @@ const Card = ({
   return (
     <div className={cardStyle}>
       <div className="min-h-[190px]">
-        <h2
-          style={{ cursor: "pointer" }}
-          onClick={onDetails}
-          className={titleClass}
-        >
+        <h2 onClick={onDetails} className={titleClass}>
           {title}
         </h2>
         <p className="text-text-description">{description}</p>
