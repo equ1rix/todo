@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useState } from "react";
 
-import ModalTask from "components/modalTask";
+import ModalTask from "src/components/modalTask";
 
 export type ModalContextProps = {
   isOpenModal: boolean;

@@ -4,21 +4,21 @@ import { useLocation } from "react-router-dom";
 
 import {
   removeTask,
-  updateTaskDueDate,
   setFavorite,
-} from "redux/Task/TaskActions";
-import { Filter, filters } from "helpers";
-import { selectTasks } from "redux/Task/TaskSelector";
-import { Task } from "redux/Task/TaskReducer";
-
-import Sidebar from "components/sidebar";
-import Header from "components/header";
-import TaskCards from "components/taskCards";
-import TasksBar from "components/tasksBar";
+  updateTaskDueDate,
+} from "src/redux/Task/TaskActions";
+import { Task } from "src/redux/Task/TaskReducer";
+import { selectTasks } from "src/redux/Task/TaskSelector";
 import {
   ModalDetailsContext,
   ModalDetailsContextProps,
-} from "context/ModalTaskDetailsContext";
+} from "src/context/ModalTaskDetailsContext";
+
+import Header from "src/components/header";
+import Sidebar from "src/components/sidebar";
+import TaskCards from "src/components/taskCards";
+import TasksBar from "src/components/tasksBar";
+import { Filter, filters } from "src/helpers";
 
 const Homepage = () => {
   const [selectedFilter, setSelectedFilter] = useState<Filter>(filters[0]);
