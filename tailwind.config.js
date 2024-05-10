@@ -14,6 +14,8 @@ module.exports = {
           defaultTitle: "#d4e9f0",
           default: "#3a668a",
           approaching: "#f43f5e",
+          title: "#d6d6d6",
+          description: "#a6a6a6",
         },
         border: {
           primaryBorder: "#6c29d9",

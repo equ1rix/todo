@@ -49,8 +49,8 @@ const Card = ({
 
   const titleClass =
     type === "PRIMARY"
-      ? "font-bold text-text-primary"
-      : "font-bold text-text-default";
+      ? "font-bold text-text-primary cursor-pointer"
+      : "font-bold text-text-title cursor-pointer";
 
   const borderColor =
     type === "PRIMARY"
@@ -63,7 +63,7 @@ const Card = ({
         <h2 onClick={onDetails} className={titleClass}>
           {title}
         </h2>
-        <p>{description}</p>
+        <p className="text-text-description">{description}</p>
       </div>
       <div>
         <DatePicker

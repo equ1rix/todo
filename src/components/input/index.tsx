@@ -28,7 +28,7 @@ const Input = ({
         value={value}
         onChange={onChangeHandler}
         placeholder={placeholder}
-        className="bg-inputBG text-text-defaultTitle p-2 placeholder-text-defaultTitle rounded-lg w-[100%] min-h-[40px]"
+        className="bg-inputBG text-text-defaultTitle p-2 rounded-lg w-[100%] min-h-[40px]"
       ></input>
     </div>
   );

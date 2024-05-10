@@ -24,6 +24,8 @@ const Homepage = () => {
   const [selectedFilter, setSelectedFilter] = useState<Filter>(filters[0]);
   const [tasks, setTasks] = useState<Task[]>(useSelector(selectTasks));
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [foundTasksCount, setFoundTasksCount] = useState<number>(0);
+  const allTasks = useSelector(selectTasks);
 
   const { openModalDetails } = useContext(
     ModalDetailsContext
@@ -57,15 +59,19 @@ const Homepage = () => {
 
   const filteredTasks = useSelector(selectedFilter.select);
 
+  const tasksToShow =
+    searchQuery.trim() === ""
+      ? tasks
+      : allTasks.filter(
+          (task) =>
+            task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            task.description.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
   useEffect(() => {
     setTasks(filteredTasks);
-  }, [filteredTasks]);
-
-  const tasksToShow = tasks.filter(
-    (task) =>
-      task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      task.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+    setFoundTasksCount(tasksToShow.length);
+  }, [filteredTasks, tasksToShow]);
 
   return (
     <div className="flex h-[100vh]">
@@ -77,7 +83,7 @@ const Homepage = () => {
       </div>
       <div className="flex flex-col w-[100%] bg-modalBG">
         <Header onChange={setSearchQuery} value={searchQuery} />
-        <TasksBar title={selectedFilter.text} quantity={tasks.length} />
+        <TasksBar title={selectedFilter.text} quantity={foundTasksCount} />
         <TaskCards
           tasks={tasksToShow}
           setFavoriteTask={updateFavoriteStatus}
