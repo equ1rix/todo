@@ -2,11 +2,11 @@ import { ReactNode, createContext, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { defaultTasks } from "@helpers/mock";
-import { Task } from "@redux/Task/TaskReducer";
-import { selectTasks } from "@redux/Task/TaskSelector";
+import { defaultTasks } from "src/helpers/mock";
+import { Task } from "src/redux/Task/TaskReducer";
+import { selectTasks } from "src/redux/Task/TaskSelector";
 
-import ModalTaskDetails from "@components/modalTaskDetails";
+import ModalTaskDetails from "src/components/modalTaskDetails";
 
 export type ModalDetailsContextProps = {
   isOpenModalDetails: boolean;

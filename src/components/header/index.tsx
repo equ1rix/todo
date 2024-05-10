@@ -1,10 +1,10 @@
 import { useContext } from "react";
 
-import { getFormattedDate, mock } from "@helpers";
-import { ModalContext, ModalContextProps } from "@context/ModalTaskContext";
+import { getFormattedDate, mock } from "src/helpers";
+import { ModalContext, ModalContextProps } from "src/context/ModalTaskContext";
 
-import Button from "@components/button";
-import Input from "@components/input";
+import Button from "src/components/button";
+import Input from "src/components/input";
 
 type HeaderProps = {
   date?: string;

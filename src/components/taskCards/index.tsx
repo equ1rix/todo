@@ -1,13 +1,13 @@
 import { useContext } from "react";
 
-import { calculateDueDateApproaching, mock } from "@helpers";
-import { Task } from "@redux/Task/TaskReducer";
+import { calculateDueDateApproaching, mock } from "src/helpers";
+import { Task } from "src/redux/Task/TaskReducer";
 
-import Card from "@components/card";
+import Card from "src/components/card";
 import {
   ModalDetailsContext,
   ModalDetailsContextProps,
-} from "@context/ModalTaskDetailsContext";
+} from "src/context/ModalTaskDetailsContext";
 
 type TaskCardsProps = {
   tasks: Task[];

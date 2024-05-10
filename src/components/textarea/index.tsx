@@ -1,8 +1,8 @@
 import React from "react";
 
-import { mock } from "@helpers";
+import { mock } from "src/helpers";
 
-import Label from "@components/label";
+import Label from "src/components/label";
 
 type TextareaProps = {
   placeholder?: string;
