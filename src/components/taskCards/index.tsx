@@ -27,7 +27,7 @@ const TaskCards = ({
   ) as ModalDetailsContextProps;
 
   return (
-    <div className="overflow-y-auto grid grid-cols-5 gap-4 p-4 h-full">
+    <div className="overflow-y-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-4 p-4">
       {tasks &&
         tasks.map((card: Task) => (
           <div key={card.id}>

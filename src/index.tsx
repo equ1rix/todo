@@ -9,7 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import "index.css";
 import { ModalContextProvider } from "context/ModalTaskContext";
 import { ModalDetailsContextProvider } from "context/ModalTaskDetailsContext";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import Homepage from "./pages/homepage";
 
 const root = ReactDOM.createRoot(
@@ -19,7 +19,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
+        <HashRouter>
           <ModalDetailsContextProvider>
             <ModalContextProvider>
               <Routes>
@@ -28,7 +28,7 @@ root.render(
               </Routes>
             </ModalContextProvider>
           </ModalDetailsContextProvider>
-        </BrowserRouter>
+        </HashRouter>
       </PersistGate>
     </Provider>
   </React.StrictMode>
